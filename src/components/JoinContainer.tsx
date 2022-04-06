@@ -38,6 +38,17 @@ const supportedGames: Record<string, GameConfig> = {
             sha1: 'd67920e55ce0aa3ede7ba1b675a4aa2cfbad050d',
             sha256: '5be9c4a7f65a96a4bfd835da036911aebd0f82efef978fb8226434fbda807992'
         }
+    },
+    paraworld: {
+        protocol: 'paraworld',
+        label: 'ParaWorld',
+        sourceURL: 'https://gist.github.com/cetteup/087675f13702dddda0a7245d2fb4cab8#file-paraworld-url-launcher-ps1',
+        launcherDownloadURL: 'https://static.cetteup.com/paraworld/paraworld-url-launcher.exe',
+        launcherChecksums: {
+            md5: '874bd81b2c3b642ee80a7ee52aa84257',
+            sha1: '4b71d8d5a5c5b7f8fabb16f095bce5be08729645',
+            sha256: '5cb2aeaf3105e1853b65ed35df3f13e3219d66ab3f62cfee4f3018b4b5622f18'
+        }
     }
 };
 
