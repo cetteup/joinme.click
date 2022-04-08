@@ -46,8 +46,9 @@ const DownloadModal: FC<DownloadModalProps> = ({
                     <strong>SHA256:</strong> <code className="text-white">{downloadChecksums.sha256}</code>
                 </p>
                 <p>
-                    Once downloaded and verified, right click on the <code className="text-info">{filename}</code> and then choose <q>Run as administrator</q>.
+                    Once downloaded and verified, extract the launcher and run <code className="text-info">{filename}</code> once.
                     This step is required in order to register it as the handler for the <code className="text-info">{protocol}://</code> URL protocol.
+                    The launcher will let you know which games it detected and registered as a URL handler for.
                 </p>
             </Modal.Body>
             <Modal.Footer className="bg-secondary text-white">
