@@ -24,7 +24,7 @@ const JoinContainer: FC = () => {
 
     return (
         <>
-            <h1 className="display-6">You have been invited to join {ip}:{port}, a {config.label} server</h1>
+            <h1 className="display-6">You have been invited to join {ip}:{port}, a <em>{config.label}</em> server</h1>
             <div>
                 <JoinBtn className="mt-3 mx-3" protocol={config.protocol} ip={ip} port={port} />
                 <Button className="mt-3 mx-3" variant="outline-secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>
