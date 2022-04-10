@@ -15,7 +15,7 @@ export const supportedGames: Record<string, GameConfig> = {
         minLauncherVersion: 'v0.1.2-alpha'
     },
     bfvietnam: {
-        protocol: 'bfv',
+        protocol: 'bfvietnam',
         label: 'Battlefield Vietnam',
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.2-alpha'
