@@ -8,11 +8,13 @@ type GameConfig = {
     protocol: string
     label: string
     launcher: LauncherDetails
+    minLauncherVersion: string
 }
 
 type LauncherDetails = {
     sourceURL: string
     sourceProvider: string
+    currentVersion: string
     downloadURL: string
     checksums:  {
         md5: string
@@ -25,6 +27,7 @@ type LauncherDetails = {
 const officialLauncher: LauncherDetails = {
     sourceURL: 'https://github.com/cetteup/joinme.click-launcher',
     sourceProvider: 'GitHub',
+    currentVersion: 'v0.1.2-alpha',
     downloadURL: 'https://github.com/cetteup/joinme.click-launcher/releases/download/v0.1.2-alpha/joinme.click-launcher-v0.1.2-alpha-windows-amd64.zip',
     checksums: {
         md5: '90b9d4cf78c562a036996fcbda3cf012',
@@ -38,22 +41,26 @@ const supportedGames: Record<string, GameConfig> = {
     bf1942: {
         protocol: 'bf1942',
         label: 'Battlefield 1942',
-        launcher: officialLauncher
+        launcher: officialLauncher,
+        minLauncherVersion: 'v0.1.2-alpha'
     },
     bfvietnam: {
         protocol: 'bfv',
         label: 'Battlefield Vietnam',
-        launcher: officialLauncher
+        launcher: officialLauncher,
+        minLauncherVersion: 'v0.1.2-alpha'
     },
     bf2: {
         protocol: 'bf2',
         label: 'Battlefield 2',
-        launcher: officialLauncher
+        launcher: officialLauncher,
+        minLauncherVersion: 'v0.1.1-alpha'
     },
     paraworld: {
         protocol: 'paraworld',
         label: 'ParaWorld',
-        launcher: officialLauncher
+        launcher: officialLauncher,
+        minLauncherVersion: 'v0.1.2-alpha'
     }
 };
 
@@ -81,7 +88,11 @@ const JoinContainer: FC = () => {
                 <JoinBtn className="mt-3 mx-3" protocol={config.protocol} ip={ip} port={port} />
                 <Button className="mt-3 mx-3" variant="outline-secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>
             </div>
-                
+            <div className="mt-3">
+                <p className="text-white-50"><small>{config.label} requires launcher version {config.minLauncherVersion} or later.
+                    You can determine your launcher version by looking at the details tab of the {config.launcher.filename} file properties.</small></p>
+            </div>
+
 
             <DownloadModal
                 title={'Download the launcher'}
