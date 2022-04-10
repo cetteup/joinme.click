@@ -35,7 +35,12 @@ const DownloadModal: FC<DownloadModalProps> = ({
             centered
         >
             <Modal.Body className="bg-secondary text-white">
-                <h4> {title}</h4>
+                <h4>{title}</h4>
+                <p>
+                    You need the launcher in order to make the <code className="text-info">{protocol}://</code> work on your system. <strong>Note:</strong> In general,
+                    you only need to download the launcher once.
+                    Subsequent game launches will work without any prior download for all games supported by the launcher version you downloaded.
+                </p>
                 <p>
                     Depending on your brower, you may receive a security warning when downloading the launcher. 
                     If you are unsure whether the download is safe, you can check the <a href={sourceURL} target="_blank" className="text-white" rel="noreferrer">source code on {sourceProvider}</a> and/or validate the checksum of the executable after the download.

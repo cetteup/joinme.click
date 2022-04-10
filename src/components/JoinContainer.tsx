@@ -84,7 +84,7 @@ const JoinContainer: FC = () => {
                 
 
             <DownloadModal
-                title={'Download the launcher for ' + config.label}
+                title={'Download the launcher'}
                 protocol={config.protocol}
                 sourceURL={config.launcher.sourceURL}
                 sourceProvider={config.launcher.sourceProvider}
