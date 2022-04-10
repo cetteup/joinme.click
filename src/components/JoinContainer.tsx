@@ -3,66 +3,7 @@ import { useParams } from 'react-router-dom';
 import JoinBtn from './JoinBtn';
 import { Button } from 'react-bootstrap';
 import DownloadModal from './DownloadModal';
-
-type GameConfig = {
-    protocol: string
-    label: string
-    launcher: LauncherDetails
-    minLauncherVersion: string
-}
-
-type LauncherDetails = {
-    sourceURL: string
-    sourceProvider: string
-    currentVersion: string
-    downloadURL: string
-    checksums:  {
-        md5: string
-        sha1: string
-        sha256: string
-    }
-    filename: string
-}
-
-const officialLauncher: LauncherDetails = {
-    sourceURL: 'https://github.com/cetteup/joinme.click-launcher',
-    sourceProvider: 'GitHub',
-    currentVersion: 'v0.1.2-alpha',
-    downloadURL: 'https://github.com/cetteup/joinme.click-launcher/releases/download/v0.1.2-alpha/joinme.click-launcher-v0.1.2-alpha-windows-amd64.zip',
-    checksums: {
-        md5: '90b9d4cf78c562a036996fcbda3cf012',
-        sha1: '94fb962325f653fea20b723b45c6ccfb315808ce',
-        sha256: 'cadd29d8e1104ea18ad5e5cf37cae5449e8b524adc9c982ce226028c88453c49'
-    },
-    filename: 'joinme.click-launcher.exe'
-};
-
-const supportedGames: Record<string, GameConfig> = {
-    bf1942: {
-        protocol: 'bf1942',
-        label: 'Battlefield 1942',
-        launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.2-alpha'
-    },
-    bfvietnam: {
-        protocol: 'bfv',
-        label: 'Battlefield Vietnam',
-        launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.2-alpha'
-    },
-    bf2: {
-        protocol: 'bf2',
-        label: 'Battlefield 2',
-        launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.1-alpha'
-    },
-    paraworld: {
-        protocol: 'paraworld',
-        label: 'ParaWorld',
-        launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.2-alpha'
-    }
-};
+import { supportedGames } from '../games/titles';
 
 const JoinContainer: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
