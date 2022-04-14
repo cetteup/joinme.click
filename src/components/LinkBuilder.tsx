@@ -1,17 +1,20 @@
 import React, { FC, useRef, useState } from 'react';
 import { Button, Col, Form, Overlay, Row, Tooltip } from 'react-bootstrap';
-import { supportedGames } from '../games/titles';
+import { GameConfig, supportedGames } from '../games/titles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import JoinBtn from './JoinBtn';
+import DownloadModal from './DownloadModal';
 
 type LinkParams = {
     protocol: string,
     ip: string,
     port: string,
     copied: boolean
+    gameConfig?: GameConfig,
 }
 
 const LinkBuilder: FC = () => {
+    const [modalShow, setModalShow] = React.useState(false);
     const [link, setLink] = useState<LinkParams>( { protocol: '', ip: '', port: '', copied: false });
     const target = useRef(null);
 
@@ -29,7 +32,7 @@ const LinkBuilder: FC = () => {
                 <Row>
                     <Col>
                         <Form.Group className='mb-3'>
-                            <Form.Select id='gameSelect' className='bg-dark text-white' size='lg' defaultValue='Select game' required onChange={e => setLink({ ...link, protocol: e.target.value, copied: false })}>
+                            <Form.Select id='gameSelect' className='bg-dark text-white' size='lg' defaultValue='Select game' required onChange={e => setLink({ ...link, protocol: e.target.value, copied: false, gameConfig: supportedGames[e.target.value] })}>
                                 <option disabled>Select game</option>
                                 {gameOptions}
                             </Form.Select>
@@ -57,7 +60,7 @@ const LinkBuilder: FC = () => {
 
             <div>
                 <CopyToClipboard text={buildJoinMeLink(link)} onCopy={() => setLink({ ...link, copied: true })}>
-                    <Button ref={target} className='mx-3' variant="outline-primary" size="lg" disabled={!linkParamsValid(link)}>Copy joinme.click link</Button>
+                    <Button ref={target} className='m-2' variant="outline-primary" size="lg" disabled={!linkParamsValid(link)}>Copy joinme.click link</Button>
                 </CopyToClipboard>
                 <Overlay target={target.current} show={link.copied} placement="right">
                     {(props) => (
@@ -67,8 +70,44 @@ const LinkBuilder: FC = () => {
                     )}
                 </Overlay>
 
-                <JoinBtn className='mx-3' protocol={link.protocol} ip={link.ip} port={link.port} disabled={!linkParamsValid(link)} />
+                <JoinBtn className='m-2' protocol={link.protocol} ip={link.ip} port={link.port} disabled={!linkParamsValid(link)} />
+
+                {
+                    link.gameConfig?.requiresLauncher &&
+                    <Button className="m-2" variant="outline-secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>
+                }
             </div>
+
+            {
+                (link.gameConfig?.requiresLauncher && link.gameConfig?.launcher || link.gameConfig?.hint) &&
+                <div className="mt-3">
+                    <p className="text-white-50">
+                        {
+                            link.gameConfig.requiresLauncher && link.gameConfig.launcher &&
+                            <small>{link.gameConfig.label} requires launcher version {link.gameConfig.minLauncherVersion} or later.
+                                You can determine your launcher version by looking at the details tab of the {link.gameConfig.launcher.filename} file properties.</small>
+                        }
+                        {
+                            link.gameConfig.hint
+                        }
+                    </p>
+                </div>
+            }
+
+            {
+                link.gameConfig?.requiresLauncher && link.gameConfig?.launcher &&
+                <DownloadModal
+                    title={'Download the launcher'}
+                    protocol={link.gameConfig.protocol}
+                    sourceURL={link.gameConfig.launcher.sourceURL}
+                    sourceProvider={link.gameConfig.launcher.sourceProvider}
+                    downloadURL={link.gameConfig.launcher.downloadURL}
+                    downloadChecksums={link.gameConfig.launcher.checksums}
+                    filename={link.gameConfig.launcher.filename}
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                />
+            }
         </>
     );
 };
