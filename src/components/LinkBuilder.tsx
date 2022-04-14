@@ -62,7 +62,7 @@ const LinkBuilder: FC = () => {
                 <CopyToClipboard text={buildJoinMeLink(link)} onCopy={() => setLink({ ...link, copied: true })}>
                     <Button ref={target} className='m-2' variant="outline-primary" size="lg" disabled={!linkParamsValid(link)}>Copy joinme.click link</Button>
                 </CopyToClipboard>
-                <Overlay target={target.current} show={link.copied} placement="right">
+                <Overlay target={target.current} show={link.copied} placement="left">
                     {(props) => (
                         <Tooltip {...props}>
                             Copied!
