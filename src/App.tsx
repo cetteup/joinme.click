@@ -9,7 +9,7 @@ function App() {
         <div className="App bg-secondary bg-gradient">
             <main>
                 <Container className="d-flex align-items-center justify-content-center vh-100 text-center">
-                    <div className="p-5 mb-2 bg-dark text-white rounded-3 mw-75">
+                    <div className="p-5 mb-2 bg-dark text-white rounded-3 vw-100">
                         <Routes>
                             <Route path='/' element={<LinkBuilder />} />
                             <Route path='g'>
