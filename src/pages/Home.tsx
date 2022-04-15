@@ -2,8 +2,8 @@ import React, { FC, useRef, useState } from 'react';
 import { Button, Col, Form, Overlay, Row, Tooltip } from 'react-bootstrap';
 import { GameConfig, supportedGames } from '../games/titles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import JoinBtn from './JoinBtn';
-import DownloadModal from './DownloadModal';
+import JoinBtn from '../components/JoinBtn';
+import DownloadModal from '../components/DownloadModal';
 
 type LinkParams = {
     protocol: string,
@@ -13,7 +13,7 @@ type LinkParams = {
     gameConfig?: GameConfig,
 }
 
-const LinkBuilder: FC = () => {
+const Home: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
     const [link, setLink] = useState<LinkParams>( { protocol: '', ip: '', port: '', copied: false });
     const target = useRef(null);
@@ -147,4 +147,4 @@ function buildJoinMeLink(link: LinkParams): string {
     return '';
 }
 
-export default LinkBuilder;
+export default Home;

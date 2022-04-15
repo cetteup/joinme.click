@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import JoinBtn from './JoinBtn';
+import JoinBtn from '../components/JoinBtn';
 import { Button } from 'react-bootstrap';
-import DownloadModal from './DownloadModal';
+import DownloadModal from '../components/DownloadModal';
 import { supportedGames } from '../games/titles';
 
-const JoinContainer: FC = () => {
+const JoinGame: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
     const { game, ip, port } = useParams();
 
@@ -66,4 +66,4 @@ const JoinContainer: FC = () => {
     );
 };
 
-export default JoinContainer;
+export default JoinGame;
