@@ -12,21 +12,21 @@ const JoinGame: FC = () => {
 
     if (!game || !identifier) {
         return (
-            <h1 className="text-danger display-6">Whoops, required path parameters seem to be missing.</h1>
+            <h1 className="text-danger display-6">Whoops, required parameters seem to be missing</h1>
         );
     }
 
     const config = supportedGames[game];
     if (!config) {
         return (
-            <h1 className="text-danger display-6"><q>{game}</q> is currently not supported, sorry.</h1>
+            <h1 className="text-danger display-6"><q>{game}</q> is currently not supported, sorry</h1>
         );
     }
 
     const [host, port] = identifier.split(':');
     if (!host || (!port && config.urlType == 'ip-port')) {
         return (
-            <h1 className="text-danger display-6">Whoops, required parameters seem to be missing.</h1>
+            <h1 className="text-danger display-6">Whoops, required parameters seem to be missing</h1>
         );
     }
 
