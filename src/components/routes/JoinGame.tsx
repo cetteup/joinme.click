@@ -8,9 +8,9 @@ import ServerLabel from '../atoms/ServerLabel';
 
 const JoinGame: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
-    const { game, host, port } = useParams();
+    const { game, identifier } = useParams();
 
-    if (!game) {
+    if (!game || !identifier) {
         return (
             <h1 className="text-danger display-6">Whoops, required path parameters seem to be missing.</h1>
         );
@@ -23,9 +23,10 @@ const JoinGame: FC = () => {
         );
     }
 
+    const [host, port] = identifier.split(':');
     if (!host || (!port && config.urlType == 'ip-port')) {
         return (
-            <h1 className="text-danger display-6">Whoops, required path parameters seem to be missing.</h1>
+            <h1 className="text-danger display-6">Whoops, required parameters seem to be missing.</h1>
         );
     }
 
