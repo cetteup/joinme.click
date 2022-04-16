@@ -6,16 +6,16 @@ import JoinBtn from '../components/JoinBtn';
 import DownloadModal from '../components/DownloadModal';
 
 type LinkParams = {
-    protocol: string,
-    ip: string,
-    port: string,
+    protocol?: string,
+    host?: string,
+    port?: string,
     copied: boolean
     gameConfig?: GameConfig,
 }
 
 const Home: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
-    const [link, setLink] = useState<LinkParams>( { protocol: '', ip: '', port: '', copied: false });
+    const [link, setLink] = useState<LinkParams>( { copied: false });
     const target = useRef(null);
 
     const gameOptions: JSX.Element[] = [];
@@ -27,7 +27,7 @@ const Home: FC = () => {
     return (
         <>
             <h1 className="display-6">Make it easy for anyone to join your server</h1>
-            <p className={'mw-70'}>Select a game and enter the server&apos;s ip and port. We will generate a link for you that anyone can use to join the server in just 2 clicks.</p>
+            <p className={'mw-70'}>Select a game and enter the server&apos;s ip/game identifier (and port, if required). We will generate a link for you that anyone can use to join the server in just 2 clicks.</p>
             <Form className="my-3 mx-3">
                 <Row>
                     <Col>
@@ -39,18 +39,31 @@ const Home: FC = () => {
                         </Form.Group>
                     </Col>
                 </Row>
-                <Row>
-                    <Col md={7} className={'mb-3'}>
-                        <Form.Group>
-                            <Form.Control className='bg-dark text-white' size='lg' type='text' placeholder='Enter server IP' onChange={e => setLink({ ...link, ip: e.target.value, copied: false })}/>
-                        </Form.Group>
-                    </Col>
-                    <Col md={5} className={'mb-3'}>
-                        <Form.Group>
-                            <Form.Control className='bg-dark text-white' size='lg' type='text' placeholder='Enter server port' onChange={e => setLink({ ...link, port: e.target.value, copied: false })}/>
-                        </Form.Group>
-                    </Col>
-                </Row>
+                {
+                    (!link.gameConfig || link.gameConfig.urlType == 'ip-port') &&
+                    <Row>
+                        <Col md={7} className={'mb-3'}>
+                            <Form.Group>
+                                <Form.Control className='bg-dark text-white' size='lg' type='text' placeholder='Enter server IP' onChange={e => setLink({ ...link, host: e.target.value, copied: false })}/>
+                            </Form.Group>
+                        </Col>
+                        <Col md={5} className={'mb-3'}>
+                            <Form.Group>
+                                <Form.Control className='bg-dark text-white' size='lg' type='text' placeholder='Enter server port' onChange={e => setLink({ ...link, port: e.target.value, copied: false })}/>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                }
+                {
+                    (link.gameConfig && link.gameConfig.urlType == 'gameId') &&
+                    <Row>
+                        <Col className={'mb-3'}>
+                            <Form.Group>
+                                <Form.Control className='bg-dark text-white' size='lg' type='text' placeholder='Enter server game ID' onChange={e => setLink({ ...link, host: e.target.value, copied: false })}/>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                }
                 <Row>
                     <Col>
                         <Form.Control className='bg-dark text-light' size='lg' type='text' placeholder='bf2://135.125.56.26:16469' value={buildGameUrl(link)} readOnly />
@@ -70,7 +83,7 @@ const Home: FC = () => {
                     )}
                 </Overlay>
 
-                <JoinBtn className='m-2' protocol={link.protocol} ip={link.ip} port={link.port} disabled={!linkParamsValid(link)} />
+                <JoinBtn className='m-2' protocol={link.protocol} host={link.host} port={link.port} disabled={!linkParamsValid(link)} />
 
                 {
                     link.gameConfig?.requiresLauncher &&
@@ -112,8 +125,17 @@ const Home: FC = () => {
     );
 };
 
-function linkParamsValid({ protocol, ip, port }: LinkParams): boolean {
-    return protocol in supportedGames && isValidIP(ip) && isValidPort(port);
+function linkParamsValid({ protocol, host, port, gameConfig }: LinkParams): boolean {
+    if (!protocol || !(protocol in supportedGames) || !host) {
+        return false;
+    }
+
+    switch (gameConfig?.urlType) {
+        case 'gameId':
+            return isValidGameID(host);
+        default:
+            return isValidIP(host) && !!port && isValidPort(port);
+    }
 }
 
 function isValidIP(ip: string): boolean {
@@ -126,25 +148,37 @@ function isValidPort(port: string): boolean {
     return numeric >= 1 && numeric <= 65535;
 }
 
-function buildGameUrl({ protocol, ip, port }: LinkParams): string {
+function isValidGameID(gameID: string): boolean {
+    return gameID.match(/^\d+$/gi) != null;
+}
+
+function buildGameUrl({ protocol, host, port, gameConfig }: LinkParams): string {
     let url = '';
     if (protocol) {
         url += `${protocol}://`;
     }
-    if (ip) {
-        url += isValidIP(ip) ? ip : 'invalid ip address';
+    if (host && gameConfig?.urlType == 'ip-port') {
+        url += isValidIP(host) ? host : 'invalid ip address';
     }
-    if (port) {
+    if (port && gameConfig?.urlType == 'ip-port') {
         url += `:${isValidPort(port) ? port : 'invalid port'}`;
+    }
+    if (host && gameConfig?.urlType == 'gameId') {
+        url += isValidGameID(host) ? host : 'invalid game id';
     }
     return url;
 }
 
 function buildJoinMeLink(link: LinkParams): string {
-    if (linkParamsValid(link)) {
-        return `https://joinme.click/g/${link.protocol}/${link.ip}:${link.port}`;
+    if (!linkParamsValid(link)) {
+        return '';
     }
-    return '';
+
+    let url = `https://joinme.click/g/${link.protocol}/${link.host}`;
+    if (link.gameConfig?.urlType == 'ip-port' && link.port) {
+        url += `:${link.port}`;
+    }
+    return url;
 }
 
 export default Home;

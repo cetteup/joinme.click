@@ -8,9 +8,9 @@ import ServerLabel from '../components/ServerLabel';
 
 const JoinGame: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
-    const { game, ip, port } = useParams();
+    const { game, host, port } = useParams();
 
-    if (!game || !ip || !port) {
+    if (!game) {
         return (
             <h1 className="text-danger display-6">Whoops, required path parameters seem to be missing.</h1>
         );
@@ -23,11 +23,17 @@ const JoinGame: FC = () => {
         );
     }
 
+    if (!host || (!port && config.urlType == 'ip-port')) {
+        return (
+            <h1 className="text-danger display-6">Whoops, required path parameters seem to be missing.</h1>
+        );
+    }
+
     return (
         <>
-            <h1 className="display-6">You have been invited to join <ServerLabel gameConfig={config} ip={ip} port={port} className={'text-primary'} />, a <em>{config.label}</em> server</h1>
+            <h1 className="display-6">You have been invited to join <ServerLabel gameConfig={config} host={host} port={port} className={'text-primary'} />, a <em>{config.label}</em> server</h1>
             <div>
-                <JoinBtn className="mt-3 mx-3" protocol={config.protocol} ip={ip} port={port}/>
+                <JoinBtn className="mt-3 mx-3" protocol={config.protocol} host={host} port={port}/>
                 {
                     config.requiresLauncher &&
                     <Button className="mt-3 mx-3" variant="outline-secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>

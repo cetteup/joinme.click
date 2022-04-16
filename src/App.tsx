@@ -22,14 +22,14 @@ function App() {
                                 <Route path='/' element={<Home />} />
                                 <Route path='/download' element={<Download />} />
                                 <Route path='g'>
-                                    <Route path=':game/:ip::port' element={<JoinGame />} />
+                                    <Route path=':game/:host::port' element={<JoinGame />} />
+                                    <Route path=':game/:host' element={<JoinGame />} />
                                 </Route>
                                 <Route path="*" element={<h1 className="text-white-50 display-6">Nothing to see here, double check the URL.</h1>} />
                             </Routes>
                         </QueryClientProvider>
                     </div>
                 </Container>
-
             </main>
         </div>
     );
