@@ -4,6 +4,7 @@ import JoinBtn from '../components/JoinBtn';
 import { Button } from 'react-bootstrap';
 import DownloadModal from '../components/DownloadModal';
 import { supportedGames } from '../games/titles';
+import ServerLabel from '../components/ServerLabel';
 
 const JoinGame: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
@@ -24,7 +25,7 @@ const JoinGame: FC = () => {
 
     return (
         <>
-            <h1 className="display-6">You have been invited to join {ip}:{port}, a <em>{config.label}</em> server</h1>
+            <h1 className="display-6">You have been invited to join <ServerLabel gameConfig={config} ip={ip} port={port} className={'text-primary'} />, a <em>{config.label}</em> server</h1>
             <div>
                 <JoinBtn className="mt-3 mx-3" protocol={config.protocol} ip={ip} port={port}/>
                 {

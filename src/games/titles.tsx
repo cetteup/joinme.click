@@ -1,6 +1,9 @@
 import React from 'react';
 import { LauncherDetails, officialLauncher } from './launchers';
 
+export type ServerNameSrc = 'bflist'
+export type BflistGame = 'bf1942' | 'bfvietnam' | 'bf2'
+
 export type GameConfig = {
     protocol: string
     label: string
@@ -8,6 +11,8 @@ export type GameConfig = {
     launcher?: LauncherDetails
     minLauncherVersion?: string
     hint?: JSX.Element
+    serverNameSrc?: ServerNameSrc
+    bflistGame?: BflistGame
 }
 
 export const supportedGames: Record<string, GameConfig> = {
@@ -16,28 +21,36 @@ export const supportedGames: Record<string, GameConfig> = {
         label: 'Battlefield 1942',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.2-alpha'
+        minLauncherVersion: 'v0.1.2-alpha',
+        serverNameSrc: 'bflist',
+        bflistGame: 'bf1942'
     },
     bfvietnam: {
         protocol: 'bfvietnam',
         label: 'Battlefield Vietnam',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.2-alpha'
+        minLauncherVersion: 'v0.1.2-alpha',
+        serverNameSrc: 'bflist',
+        bflistGame: 'bfvietnam'
     },
     bf2: {
         protocol: 'bf2',
         label: 'Battlefield 2',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.1-alpha'
+        minLauncherVersion: 'v0.1.1-alpha',
+        serverNameSrc: 'bflist',
+        bflistGame: 'bf2'
     },
     bf2sf: {
         protocol: 'bf2sf',
         label: 'Battlefield 2: Special Forces',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.3-alpha'
+        minLauncherVersion: 'v0.1.3-alpha',
+        serverNameSrc: 'bflist',
+        bflistGame: 'bf2'
     },
     cod: {
         protocol: 'cod',
