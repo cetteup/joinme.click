@@ -33,7 +33,7 @@ const JoinGame: FC = () => {
         <>
             <h1 className="display-6">You have been invited to join <ServerLabel gameConfig={config} host={host} port={port} className={'text-primary'} />, a <em>{config.label}</em> server</h1>
             <div>
-                <JoinBtn className="mt-3 mx-3" protocol={config.protocol} host={host} port={port}/>
+                <JoinBtn className="mt-3 mx-3" urlType={config.urlType} protocol={config.protocol} host={host} port={port}/>
                 {
                     config.requiresLauncher &&
                     <Button className="mt-3 mx-3" variant="outline-secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>
