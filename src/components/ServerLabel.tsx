@@ -14,7 +14,10 @@ const ServerLabel: FC<ServerLabelProps & React.HTMLAttributes<HTMLSpanElement>> 
         const game = gameConfig.bflistGame;
         const { isLoading, error, data } = useQuery('serverName', () =>
             fetchServerNameBflist(game, ip, port)
-        );
+        , {
+            staleTime: Infinity,
+            cacheTime: Infinity
+        });
 
         if (!isLoading && !error) label = data ?? label;
     }
