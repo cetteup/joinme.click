@@ -1,9 +1,9 @@
 import React, { FC, useRef, useState } from 'react';
 import { Button, Col, Form, Overlay, Row, Tooltip } from 'react-bootstrap';
-import { GameConfig, supportedGames } from '../games/titles';
+import { GameConfig, supportedGames } from '../../games/titles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import JoinBtn from '../components/JoinBtn';
-import DownloadModal from '../components/DownloadModal';
+import JoinBtn from '../atoms/JoinBtn';
+import DownloadModal from '../atoms/DownloadModal';
 
 type LinkParams = {
     protocol?: string,

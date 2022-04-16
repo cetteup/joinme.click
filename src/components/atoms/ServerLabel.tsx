@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { GameConfig } from '../games/titles';
+import { GameConfig } from '../../games/titles';
 import { useQuery } from 'react-query';
 
 interface ServerLabelProps {

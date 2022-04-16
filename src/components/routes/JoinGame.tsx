@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import JoinBtn from '../components/JoinBtn';
+import JoinBtn from '../atoms/JoinBtn';
 import { Button } from 'react-bootstrap';
-import DownloadModal from '../components/DownloadModal';
-import { supportedGames } from '../games/titles';
-import ServerLabel from '../components/ServerLabel';
+import DownloadModal from '../atoms/DownloadModal';
+import { supportedGames } from '../../games/titles';
+import ServerLabel from '../atoms/ServerLabel';
 
 const JoinGame: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);

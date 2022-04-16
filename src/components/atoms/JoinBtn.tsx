@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Button from 'react-bootstrap/Button';
-import { UrlType } from '../games/titles';
+import { UrlType } from '../../games/titles';
 
 interface JoinBtnProps {
     urlType?: UrlType,

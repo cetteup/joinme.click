@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
-import JoinGame from './pages/JoinGame';
-import Home from './pages/Home';
-import Download from './pages/Download';
+import JoinGame from './components/routes/JoinGame';
+import Home from './components/routes/Home';
+import Download from './components/routes/Download';
 import Header from './elements/Header';
 import './App.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
