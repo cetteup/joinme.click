@@ -40,7 +40,7 @@ async function fetchServerName(gameConfig: GameConfig, host: string, port?: stri
 }
 
 async function fetchServerNameBflist(game: string, ip: string, port: string): Promise<string> {
-    const resp = await fetch(`https://api.bflist.io/${game}/v1/servers/${ip}:${port}/name`);
+    const resp = await fetch(`https://server-names.joinme.click/bflist/${game}/${ip}:${port}`);
     if (resp.ok) {
         return resp.text();
     }
@@ -54,7 +54,7 @@ async function fetchServerNameGametools(game: string, gameID: string): Promise<s
         gameid: gameID,
         platform: 'pc'
     });
-    const resp = await fetch(`https://api.gametools.network/${game}/detailedserver/?${params}`);
+    const resp = await fetch(`https://server-names.joinme.click/gametools/${game}?${params}`);
 
     if (resp.ok) {
         return (await resp.json()).prefix;
