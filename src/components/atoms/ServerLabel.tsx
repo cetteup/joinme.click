@@ -37,6 +37,9 @@ async function fetchServerName(gameConfig: GameConfig, host: string, port?: stri
     else if (gameConfig.serverNameSrc == 'gametools') {
         return fetchServerNameGametools(gameConfig.protocol, host);
     }
+    else if (gameConfig.serverNameSrc == 'gamedig-lambda' && port) {
+        return fetchServerNameGamedigLambda(gameConfig.protocol, host, port);
+    }
 }
 
 async function fetchServerNameBflist(game: string, ip: string, port: string): Promise<string> {
@@ -58,6 +61,21 @@ async function fetchServerNameGametools(game: string, gameID: string): Promise<s
 
     if (resp.ok) {
         return (await resp.json()).prefix;
+    }
+    else {
+        throw Error(resp.statusText);
+    }
+}
+
+async function fetchServerNameGamedigLambda(game: string, host: string, port: string): Promise<string> {
+    const params = new URLSearchParams({
+        type: game,
+        host: host,
+        port: port
+    });
+    const resp = await fetch(`https://server-names.joinme.click/gamedig-lambda?${params}`);
+    if (resp.ok) {
+        return (await resp.json()).name;
     }
     else {
         throw Error(resp.statusText);

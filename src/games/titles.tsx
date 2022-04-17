@@ -2,7 +2,7 @@ import React from 'react';
 import { LauncherDetails, officialLauncher } from './launchers';
 
 export type UrlType = 'ip-port' | 'gameId'
-export type ServerNameSrc = 'bflist' | 'gametools'
+export type ServerNameSrc = 'bflist' | 'gametools' | 'gamedig-lambda'
 export type BflistGame = 'bf1942' | 'bfvietnam' | 'bf2'
 
 export type GameConfig = {
@@ -83,6 +83,7 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
+        serverNameSrc: 'gamedig-lambda'
     },
     coduo: {
         protocol: 'coduo',
@@ -91,6 +92,7 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
+        serverNameSrc: 'gamedig-lambda'
     },
     cod2: {
         protocol: 'cod2',
@@ -99,14 +101,16 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
+        serverNameSrc: 'gamedig-lambda'
     },
     cod4: {
         protocol: 'cod4',
         label: 'Call of Duty 4: Modern Warfare',
+        urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
-        urlType: 'ip-port',
+        serverNameSrc: 'gamedig-lambda'
     },
     codwaw: {
         protocol: 'codwaw',
@@ -115,6 +119,7 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
+        serverNameSrc: 'gamedig-lambda'
     },
     et: {
         protocol: 'et',
