@@ -5,6 +5,7 @@ import JoinGame from './components/routes/JoinGame';
 import Home from './components/routes/Home';
 import Download from './components/routes/Download';
 import Header from './elements/Header';
+import Footer from './elements/Footer';
 import './App.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -25,6 +26,7 @@ function App() {
                                 <Route path="*" element={<h1 className="text-white-50 display-6">Nothing to see here, double check the URL</h1>} />
                             </Routes>
                         </QueryClientProvider>
+                        <Footer />
                     </div>
                 </Container>
             </main>
