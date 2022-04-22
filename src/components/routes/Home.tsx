@@ -83,7 +83,7 @@ const Home: FC = () => {
                     )}
                 </Overlay>
 
-                <JoinBtn className='m-2' protocol={link.protocol} host={link.host} port={link.port} disabled={!linkParamsValid(link)} />
+                <JoinBtn className='m-2' urlType={link.gameConfig?.urlType} protocol={link.protocol} host={link.host} port={link.port} disabled={!linkParamsValid(link)} />
 
                 {
                     link.gameConfig?.requiresLauncher &&
