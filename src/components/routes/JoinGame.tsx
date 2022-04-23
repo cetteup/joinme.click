@@ -38,7 +38,7 @@ const JoinGame: FC = () => {
         host: host,
         port: port,
         query: {
-            mod: queryParams.get('mod') || undefined
+            mod: queryParams.get('mod')?.toLowerCase() || undefined
         }
     };
     if (!linkParamsValid(linkParams)) {
