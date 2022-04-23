@@ -14,6 +14,8 @@ export type GameConfig = {
     minLauncherVersion?: string
     hint?: JSX.Element
     mods?: GameMod[]
+    usesSteam?: boolean
+    urlPrefix?: string
     serverNameSrc?: ServerNameSrc
     bflistGame?: BflistGame
 }
