@@ -28,6 +28,26 @@ export const supportedGames: Record<string, GameConfig> = {
         serverNameSrc: 'bflist',
         bflistGame: 'bf1942'
     },
+    bf1942rtr: {
+        protocol: 'bf1942rtr',
+        label: 'Battlefield 1942: The Road to Rome',
+        urlType: 'ip-port',
+        requiresLauncher: true,
+        launcher: officialLauncher,
+        minLauncherVersion: 'v0.1.7-alpha',
+        serverNameSrc: 'bflist',
+        bflistGame: 'bf1942'
+    },
+    bf1942sw: {
+        protocol: 'bf1942sw',
+        label: 'Battlefield 1942: Secret Weapons of WWII',
+        urlType: 'ip-port',
+        requiresLauncher: true,
+        launcher: officialLauncher,
+        minLauncherVersion: 'v0.1.7-alpha',
+        serverNameSrc: 'bflist',
+        bflistGame: 'bf1942'
+    },
     bfvietnam: {
         protocol: 'bfvietnam',
         label: 'Battlefield Vietnam',
