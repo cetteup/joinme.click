@@ -1,32 +1,60 @@
 import React, { FC } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import JoinBtn from '../atoms/JoinBtn';
 import { Button } from 'react-bootstrap';
 import DownloadModal from '../atoms/DownloadModal';
 import { supportedGames } from '../../games/titles';
 import ServerLabel from '../atoms/ServerLabel';
+import { LinkParams, linkParamsValid } from '../../utils';
 
 const JoinGame: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
     const { game, identifier } = useParams();
+    const { search } = useLocation();
 
     if (!game || !identifier) {
         return (
-            <h1 className="text-danger display-6">Whoops, required parameters seem to be missing</h1>
+            <h1 className="text-white-50 display-6">Whoops, required parameters seem to be missing</h1>
         );
     }
 
     const config = supportedGames[game];
     if (!config) {
         return (
-            <h1 className="text-danger display-6"><q>{game}</q> is currently not supported, sorry</h1>
+            <h1 className="text-white-50 display-6"><q>{game}</q> is currently not supported</h1>
         );
     }
 
     const [host, port] = identifier.split(':');
     if (!host || (!port && config.urlType == 'ip-port')) {
         return (
-            <h1 className="text-danger display-6">Whoops, required parameters seem to be missing</h1>
+            <h1 className="text-white-50 display-6">Whoops, required parameters seem to be missing</h1>
+        );
+    }
+
+    const queryParams = new URLSearchParams(search);
+    const linkParams: LinkParams = {
+        game: config,
+        host: host,
+        port: port,
+        query: {
+            mod: queryParams.get('mod') || undefined
+        }
+    };
+    if (!linkParamsValid(linkParams)) {
+        return (
+            <h1 className="text-white-50 display-6">Whoops, looks like your link is not valid</h1>
+        );
+    }
+
+    if (linkParams?.query?.mod && !config.mods) {
+        return (
+            <h1 className="text-white-50 display-6">{config.label} does not currently support mods</h1>
+        );
+    }
+    if (linkParams?.query?.mod && config.mods && !config.mods.map((m) => m.slug).includes(linkParams.query.mod)) {
+        return (
+            <h1 className="text-white-50 display-6"><q>{linkParams.query.mod}</q> is not a mod currently supported for {config.label}</h1>
         );
     }
 
@@ -34,7 +62,7 @@ const JoinGame: FC = () => {
         <>
             <h1 className="display-6">You have been invited to join <ServerLabel gameConfig={config} host={host} port={port} className={'text-primary'} />, a <em>{config.label}</em> server</h1>
             <div>
-                <JoinBtn className="mt-3 mx-3" urlType={config.urlType} protocol={config.protocol} host={host} port={port}/>
+                <JoinBtn className="mt-3 mx-3" linkParams={linkParams} />
                 {
                     config.requiresLauncher &&
                     <Button className="mt-3 mx-3" variant="outline-secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>

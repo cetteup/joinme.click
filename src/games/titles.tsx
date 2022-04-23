@@ -13,8 +13,15 @@ export type GameConfig = {
     launcher?: LauncherDetails
     minLauncherVersion?: string
     hint?: JSX.Element
+    mods?: GameMod[]
     serverNameSrc?: ServerNameSrc
     bflistGame?: BflistGame
+}
+
+export type GameMod = {
+    label: string
+    slug: string
+    hidden?: boolean
 }
 
 export const supportedGames: Record<string, GameConfig> = {
@@ -24,7 +31,15 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.2-alpha',
+        minLauncherVersion: 'v0.1.7-alpha',
+        mods: [
+            { label: 'The Road to Rome', slug: 'xpack1', hidden: true },
+            { label: 'Secret Weapons of WWII', slug: 'xpack2', hidden: true },
+            { label: 'Battlefield 1918', slug: 'bf1918' },
+            { label: 'Desert Combat (0.7)', slug: 'desertcombat' },
+            { label: 'Desert Combat Final', slug: 'dc_final' },
+            { label: 'Pirates', slug: 'pirates' }
+        ],
         serverNameSrc: 'bflist',
         bflistGame: 'bf1942'
     },
@@ -54,7 +69,10 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.2-alpha',
+        minLauncherVersion: 'v0.1.7-alpha',
+        mods: [
+            { label: 'Battlegroup 42', slug: 'battlegroup42' }
+        ],
         serverNameSrc: 'bflist',
         bflistGame: 'bfvietnam'
     },
@@ -64,7 +82,13 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.1-alpha',
+        minLauncherVersion: 'v0.1.7-alpha',
+        mods: [
+            { label: 'Special Forces', slug: 'xpack', hidden: true },
+            { label: 'Allied Intent Xtended', slug: 'aix2' },
+            { label: 'Pirates (Yarr2)', slug: 'bfp2' },
+            { label: 'Point of Existence 2', slug: 'poe2' }
+        ],
         serverNameSrc: 'bflist',
         bflistGame: 'bf2'
     },
@@ -162,7 +186,11 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.2-alpha'
+        minLauncherVersion: 'v0.1.7-alpha',
+        mods: [
+            { label: 'Booster pack', slug: 'boosterpack1' },
+            { label: 'Mirage', slug:'mirage' }
+        ]
     },
     swat4: {
         protocol: 'swat4',

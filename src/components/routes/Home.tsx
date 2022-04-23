@@ -1,21 +1,18 @@
 import React, { FC, useRef, useState } from 'react';
 import { Button, Col, Form, Overlay, Row, Tooltip } from 'react-bootstrap';
-import { GameConfig, supportedGames } from '../../games/titles';
+import { supportedGames } from '../../games/titles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import JoinBtn from '../atoms/JoinBtn';
 import DownloadModal from '../atoms/DownloadModal';
+import { buildGameUrl, buildJoinMeLink, getModOptions, LinkParams, linkParamsValid } from '../../utils';
 
-type LinkParams = {
-    protocol?: string,
-    host?: string,
-    port?: string,
+type LinkState = LinkParams & {
     copied: boolean
-    gameConfig?: GameConfig,
 }
 
 const Home: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
-    const [link, setLink] = useState<LinkParams>( { copied: false });
+    const [link, setLink] = useState<LinkState>( { copied: false });
     const target = useRef(null);
 
     const gameOptions: JSX.Element[] = [];
@@ -32,15 +29,26 @@ const Home: FC = () => {
                 <Row>
                     <Col>
                         <Form.Group className='mb-3'>
-                            <Form.Select id='gameSelect' className='bg-dark text-white' size='lg' defaultValue='Select game' required onChange={e => setLink({ ...link, protocol: e.target.value, copied: false, gameConfig: supportedGames[e.target.value] })}>
+                            <Form.Select id='gameSelect' className='bg-dark text-white' size='lg' defaultValue='Select game' required onChange={e => setLink({ ...link, game: supportedGames[e.target.value], query: undefined, copied: false })}>
                                 <option disabled>Select game</option>
                                 {gameOptions}
                             </Form.Select>
                         </Form.Group>
                     </Col>
+                    {
+                        link.game?.mods?.length &&
+                        <Col lg={5}>
+                            <Form.Group className='mb-3'>
+                                <Form.Select id='modSelect' className='bg-dark text-white' size='lg' defaultValue='Select mod' onChange={e => setLink({ ...link, query: { ...link.query, mod: e.target.value }, copied: false })}>
+                                    <option value={''}>Select mod (optional)</option>
+                                    {getModOptions(link.game.mods)}
+                                </Form.Select>
+                            </Form.Group>
+                        </Col>
+                    }
                 </Row>
                 {
-                    (!link.gameConfig || link.gameConfig.urlType == 'ip-port') &&
+                    (!link.game || link.game.urlType == 'ip-port') &&
                     <Row>
                         <Col md={7} className={'mb-3'}>
                             <Form.Group>
@@ -55,7 +63,7 @@ const Home: FC = () => {
                     </Row>
                 }
                 {
-                    (link.gameConfig && link.gameConfig.urlType == 'gameId') &&
+                    (link.game && link.game.urlType == 'gameId') &&
                     <Row>
                         <Col className={'mb-3'}>
                             <Form.Group>
@@ -83,40 +91,40 @@ const Home: FC = () => {
                     )}
                 </Overlay>
 
-                <JoinBtn className='m-2' urlType={link.gameConfig?.urlType} protocol={link.protocol} host={link.host} port={link.port} disabled={!linkParamsValid(link)} />
+                <JoinBtn className='m-2' linkParams={link} disabled={!linkParamsValid(link)} />
 
                 {
-                    link.gameConfig?.requiresLauncher &&
+                    link.game?.requiresLauncher &&
                     <Button className="m-2" variant="outline-secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>
                 }
             </div>
 
             {
-                (link.gameConfig?.requiresLauncher && link.gameConfig?.launcher || link.gameConfig?.hint) &&
+                (link.game?.requiresLauncher && link.game?.launcher || link.game?.hint) &&
                 <div className="mt-3">
                     <p className="text-white-50">
                         {
-                            link.gameConfig.requiresLauncher && link.gameConfig.launcher &&
-                            <small>{link.gameConfig.label} requires launcher version {link.gameConfig.minLauncherVersion} or later.
-                                You can determine your launcher version by looking at the details tab of the {link.gameConfig.launcher.filename} file properties.</small>
+                            link.game.requiresLauncher && link.game.launcher &&
+                            <small>{link.game.label} requires launcher version {link.game.minLauncherVersion} or later.
+                                You can determine your launcher version by looking at the details tab of the {link.game.launcher.filename} file properties.</small>
                         }
                         {
-                            link.gameConfig.hint
+                            link.game.hint
                         }
                     </p>
                 </div>
             }
 
             {
-                link.gameConfig?.requiresLauncher && link.gameConfig?.launcher &&
+                link.game?.requiresLauncher && link.game?.launcher &&
                 <DownloadModal
                     title={'Download the launcher'}
-                    protocol={link.gameConfig.protocol}
-                    sourceURL={link.gameConfig.launcher.sourceURL}
-                    sourceProvider={link.gameConfig.launcher.sourceProvider}
-                    downloadURL={link.gameConfig.launcher.downloadURL}
-                    downloadChecksums={link.gameConfig.launcher.checksums}
-                    filename={link.gameConfig.launcher.filename}
+                    protocol={link.game.protocol}
+                    sourceURL={link.game.launcher.sourceURL}
+                    sourceProvider={link.game.launcher.sourceProvider}
+                    downloadURL={link.game.launcher.downloadURL}
+                    downloadChecksums={link.game.launcher.checksums}
+                    filename={link.game.launcher.filename}
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 />
@@ -124,61 +132,5 @@ const Home: FC = () => {
         </>
     );
 };
-
-function linkParamsValid({ protocol, host, port, gameConfig }: LinkParams): boolean {
-    if (!protocol || !(protocol in supportedGames) || !host) {
-        return false;
-    }
-
-    switch (gameConfig?.urlType) {
-        case 'gameId':
-            return isValidGameID(host);
-        default:
-            return isValidIP(host) && !!port && isValidPort(port);
-    }
-}
-
-function isValidIP(ip: string): boolean {
-    // regex from: https://stackoverflow.com/questions/4460586/javascript-regular-expression-to-check-for-ip-addresses/26445549#26445549
-    return ip.match(/^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/gi) != null;
-}
-
-function isValidPort(port: string): boolean {
-    const numeric = parseInt(port);
-    return numeric >= 1 && numeric <= 65535;
-}
-
-function isValidGameID(gameID: string): boolean {
-    return gameID.match(/^\d+$/gi) != null;
-}
-
-function buildGameUrl({ protocol, host, port, gameConfig }: LinkParams): string {
-    let url = '';
-    if (protocol) {
-        url += `${protocol}://`;
-    }
-    if (host && gameConfig?.urlType == 'ip-port') {
-        url += isValidIP(host) ? host : 'invalid ip address';
-    }
-    if (port && gameConfig?.urlType == 'ip-port') {
-        url += `:${isValidPort(port) ? port : 'invalid port'}`;
-    }
-    if (host && gameConfig?.urlType == 'gameId') {
-        url += isValidGameID(host) ? host : 'invalid game id';
-    }
-    return url;
-}
-
-function buildJoinMeLink(link: LinkParams): string {
-    if (!linkParamsValid(link)) {
-        return '';
-    }
-
-    let url = `https://joinme.click/g/${link.protocol}/${link.host}`;
-    if (link.gameConfig?.urlType == 'ip-port' && link.port) {
-        url += `:${link.port}`;
-    }
-    return url;
-}
 
 export default Home;
