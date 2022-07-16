@@ -14,12 +14,12 @@ export type LauncherDetails = {
 export const officialLauncher: LauncherDetails = {
     sourceURL: 'https://github.com/cetteup/joinme.click-launcher',
     sourceProvider: 'GitHub',
-    currentVersion: 'v0.1.7-alpha',
-    downloadURL: 'https://github.com/cetteup/joinme.click-launcher/releases/download/v0.1.7-alpha/joinme.click-launcher-v0.1.7-alpha-windows-amd64.zip',
+    currentVersion: 'v0.1.8-alpha',
+    downloadURL: 'https://github.com/cetteup/joinme.click-launcher/releases/download/v0.1.8-alpha/joinme.click-launcher-v0.1.8-alpha-windows-amd64.zip',
     checksums: {
-        md5: '59e82cc7358b9a5468b69c584d22e58d',
-        sha1: 'a845e8960c58353bb85711330ab6f46adba8b3d6',
-        sha256: 'a715acfffcb46cdc535ce0f753513a01d0b3aaa0be2335e669f6b928b5376dc0'
+        md5: '4eca370f54d509d099a7dba5670c623f',
+        sha1: 'dce6224e9adc9255d16ef7215ff274eefb825bc2',
+        sha256: 'd7f41fbb68c293498b8c867b08bced0f4baca690caed8d1da74f7ad1772fb779'
     },
     filename: 'joinme.click-launcher.exe'
 };
