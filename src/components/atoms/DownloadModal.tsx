@@ -37,7 +37,7 @@ const DownloadModal: FC<DownloadModalProps> = ({
             <Modal.Body className="bg-secondary text-white">
                 <h4>{title}</h4>
                 <p>
-                    You need the launcher in order to make the <code className="text-info">{protocol}://</code> work on your system. <strong>Note:</strong> In general,
+                    You need the launcher in order to make the <code className="text-info">{protocol}://</code> URL protocol work on your system. <strong>Note:</strong> In general,
                     you only need to download the launcher once.
                     Subsequent game launches will work without any prior download for all games supported by the launcher version you downloaded.
                 </p>
