@@ -19,7 +19,8 @@ const ServerLabel: FC<ServerLabelProps & React.HTMLAttributes<HTMLSpanElement>> 
             fetchServerName(gameConfig, host, port)
         , {
             staleTime: Infinity,
-            cacheTime: Infinity
+            cacheTime: Infinity,
+            retry: 2
         });
 
         if (!isLoading && !error) label = data ?? label;
