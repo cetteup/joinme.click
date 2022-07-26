@@ -20,7 +20,8 @@ const ServerLabel: FC<ServerLabelProps & React.HTMLAttributes<HTMLSpanElement>> 
         , {
             staleTime: Infinity,
             cacheTime: Infinity,
-            retry: 2
+            retry: 2,
+            refetchOnWindowFocus: false
         });
 
         if (!isLoading && !error) label = data ?? label;
