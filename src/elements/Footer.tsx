@@ -4,7 +4,7 @@ import IconLink from '../components/atoms/IconLink';
 const Footer: FC = () => {
     return (
         <footer className='mt-4'>
-            <p className={'fs-5'}><small>Need help? Join <a href={'https://discord.gg/wwsuMk9g4E'}>our Discord.</a></small></p>
+            <p className={'fs-5 text-white-50'}><small>Need help? Join <a href={'https://discord.gg/wwsuMk9g4E'} className="text-white-50">our Discord</a></small></p>
             <div className={'fs-4'}>
                 <IconLink icon={'bi-discord'} href={'https://discord.gg/wwsuMk9g4E'} />
                 <IconLink icon={'bi-github'} href={'https://github.com/cetteup/joinme.click'} />
