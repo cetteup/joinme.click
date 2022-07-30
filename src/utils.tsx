@@ -98,9 +98,8 @@ export function buildJoinMeLink(link: LinkParams): string {
 }
 
 export function getModOptions(mods: GameMod[]): JSX.Element[] {
-    const visibleMods = mods.filter((m) => !m.hidden);
     const modOptions: JSX.Element[] = [];
-    for (const mod of visibleMods) {
+    for (const mod of mods) {
         modOptions.push(<option key={mod.slug} value={mod.slug}>{mod.label}</option>);
     }
     

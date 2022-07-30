@@ -23,7 +23,6 @@ export type GameConfig = {
 export type GameMod = {
     label: string
     slug: string
-    hidden?: boolean
 }
 
 export const supportedGames: Record<string, GameConfig> = {
@@ -35,33 +34,13 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.7-alpha',
         mods: [
-            { label: 'The Road to Rome', slug: 'xpack1', hidden: true },
-            { label: 'Secret Weapons of WWII', slug: 'xpack2', hidden: true },
+            { label: 'The Road to Rome', slug: 'xpack1' },
+            { label: 'Secret Weapons of WWII', slug: 'xpack2' },
             { label: 'Battlefield 1918', slug: 'bf1918' },
             { label: 'Desert Combat (0.7)', slug: 'desertcombat' },
             { label: 'Desert Combat Final', slug: 'dc_final' },
             { label: 'Pirates', slug: 'pirates' }
         ],
-        serverNameSrc: 'bflist',
-        bflistGame: 'bf1942'
-    },
-    bf1942rtr: {
-        protocol: 'bf1942rtr',
-        label: 'Battlefield 1942: The Road to Rome',
-        urlType: 'ip-port',
-        requiresLauncher: true,
-        launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.7-alpha',
-        serverNameSrc: 'bflist',
-        bflistGame: 'bf1942'
-    },
-    bf1942sw: {
-        protocol: 'bf1942sw',
-        label: 'Battlefield 1942: Secret Weapons of WWII',
-        urlType: 'ip-port',
-        requiresLauncher: true,
-        launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.7-alpha',
         serverNameSrc: 'bflist',
         bflistGame: 'bf1942'
     },
@@ -86,21 +65,11 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.7-alpha',
         mods: [
-            { label: 'Special Forces', slug: 'xpack', hidden: true },
+            { label: 'Special Forces', slug: 'xpack' },
             { label: 'Allied Intent Xtended', slug: 'aix2' },
             { label: 'Pirates (Yarr2)', slug: 'bfp2' },
             { label: 'Point of Existence 2', slug: 'poe2' }
         ],
-        serverNameSrc: 'bflist',
-        bflistGame: 'bf2'
-    },
-    bf2sf: {
-        protocol: 'bf2sf',
-        label: 'Battlefield 2: Special Forces',
-        urlType: 'ip-port',
-        requiresLauncher: true,
-        launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.3-alpha',
         serverNameSrc: 'bflist',
         bflistGame: 'bf2'
     },
