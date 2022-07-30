@@ -87,7 +87,7 @@ const JoinGame: FC = () => {
             {
                 config.requiresLauncher && config.launcher &&
                 <DownloadModal
-                    title={'Download the launcher'}
+                    title={`Download the launcher (${config.launcher.currentVersion})`}
                     protocol={config.protocol}
                     sourceURL={config.launcher.sourceURL}
                     sourceProvider={config.launcher.sourceProvider}

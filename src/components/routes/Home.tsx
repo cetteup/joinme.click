@@ -118,7 +118,7 @@ const Home: FC = () => {
             {
                 link.game?.requiresLauncher && link.game?.launcher &&
                 <DownloadModal
-                    title={'Download the launcher'}
+                    title={`Download the launcher (${link.game.launcher.currentVersion})`}
                     protocol={link.game.protocol}
                     sourceURL={link.game.launcher.sourceURL}
                     sourceProvider={link.game.launcher.sourceProvider}
