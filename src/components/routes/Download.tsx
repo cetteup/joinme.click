@@ -5,7 +5,7 @@ import { officialLauncher } from '../../games/launchers';
 const Download: FC = () => {
     return (
         <>
-            <h1 className="display-6">Download the joinme.click launcher</h1>
+            <h1 className="display-6">Download the joinme.click launcher ({officialLauncher.currentVersion})</h1>
             <div className="my-4">
                 <p>
                     You need the launcher in order to make the custom URL protocols (<code className="text-info">bf2://</code> etc.) work on your system. <strong>Note:</strong> In general,
