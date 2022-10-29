@@ -105,3 +105,14 @@ export function getModOptions(mods: GameMod[]): JSX.Element[] {
     
     return modOptions;
 }
+
+export function getGameLabel(config: GameConfig, modSlug: string | undefined): string {
+    const mod = config.mods?.find((m) => m.slug == modSlug);
+    if (mod && mod.isXpack) {
+        return `${config.label}: ${mod.label}`;
+    }
+    if (mod) {
+        return mod.label;
+    }
+    return config.label;
+}

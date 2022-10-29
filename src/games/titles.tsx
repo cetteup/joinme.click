@@ -23,6 +23,7 @@ export type GameConfig = {
 export type GameMod = {
     label: string
     slug: string
+    isXpack?: boolean
 }
 
 export const supportedGames: Record<string, GameConfig> = {
@@ -34,8 +35,8 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.7-alpha',
         mods: [
-            { label: 'The Road to Rome', slug: 'xpack1' },
-            { label: 'Secret Weapons of WWII', slug: 'xpack2' },
+            { label: 'The Road to Rome', slug: 'xpack1', isXpack: true },
+            { label: 'Secret Weapons of WWII', slug: 'xpack2', isXpack: true },
             { label: 'Battlefield 1918', slug: 'bf1918' },
             { label: 'Desert Combat (0.7)', slug: 'desertcombat' },
             { label: 'Desert Combat Final', slug: 'dc_final' },
@@ -65,7 +66,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.7-alpha',
         mods: [
-            { label: 'Special Forces', slug: 'xpack' },
+            { label: 'Special Forces', slug: 'xpack', isXpack: true },
             { label: 'Allied Intent Xtended', slug: 'aix2' },
             { label: 'Pirates (Yarr2)', slug: 'bfp2' },
             { label: 'Point of Existence 2', slug: 'poe2' }

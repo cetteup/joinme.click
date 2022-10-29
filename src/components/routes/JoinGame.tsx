@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import DownloadModal from '../atoms/DownloadModal';
 import { supportedGames } from '../../games/titles';
 import ServerLabel from '../atoms/ServerLabel';
-import { LinkParams, linkParamsValid } from '../../utils';
+import { getGameLabel, LinkParams, linkParamsValid } from '../../utils';
 
 const JoinGame: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
@@ -33,12 +33,13 @@ const JoinGame: FC = () => {
     }
 
     const queryParams = new URLSearchParams(search);
+    const modSlug = queryParams.get('mod')?.toLowerCase();
     const linkParams: LinkParams = {
         game: config,
         host: host,
         port: port,
         query: {
-            mod: queryParams.get('mod')?.toLowerCase() || undefined
+            mod: modSlug
         }
     };
     if (!linkParamsValid(linkParams)) {
@@ -47,20 +48,26 @@ const JoinGame: FC = () => {
         );
     }
 
-    if (linkParams?.query?.mod && !config.mods) {
+    if (modSlug && !config.mods) {
         return (
             <h1 className="text-white-50 display-6">{config.label} does not currently support mods</h1>
         );
     }
-    if (linkParams?.query?.mod && config.mods && !config.mods.map((m) => m.slug).includes(linkParams.query.mod)) {
+
+    const mod = config.mods?.find((m) => m.slug == modSlug);
+    if (modSlug && config.mods && !mod) {
         return (
-            <h1 className="text-white-50 display-6"><q>{linkParams.query.mod}</q> is not a mod currently supported for {config.label}</h1>
+            <h1 className="text-white-50 display-6"><q>{modSlug}</q> is not a mod currently supported for {config.label}</h1>
         );
     }
 
     return (
         <>
-            <h1 className="display-6">You have been invited to join <ServerLabel gameConfig={config} host={host} port={port} className={'text-primary'} />, a <em>{config.label}</em> server</h1>
+            <h1 className="display-6">You have been invited to join <ServerLabel gameConfig={config} host={host} port={port} className={'text-primary'} />, a <em>{getGameLabel(config, modSlug)}</em> server</h1>
+            {
+                mod && !mod.isXpack &&
+                <small className={'text-white-50'}>{mod.label} is a {config.label} mod</small>
+            }
             <div>
                 <JoinBtn className="mt-3 mx-3" linkParams={linkParams} />
                 {
