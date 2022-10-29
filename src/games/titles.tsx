@@ -68,7 +68,7 @@ export const supportedGames: Record<string, GameConfig> = {
         mods: [
             { label: 'Special Forces', slug: 'xpack', isXpack: true },
             { label: 'Allied Intent Xtended', slug: 'aix2' },
-            { label: 'Pirates (Yarr2)', slug: 'bfp2' },
+            { label: 'Battlefield Pirates 2 (Yarr2)', slug: 'bfp2' },
             { label: 'Point of Existence 2', slug: 'poe2' }
         ],
         serverNameSrc: 'bflist',
