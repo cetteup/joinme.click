@@ -6,6 +6,7 @@ import DownloadModal from '../atoms/DownloadModal';
 import { supportedGames } from '../../games/titles';
 import ServerLabel from '../atoms/ServerLabel';
 import { getGameLabel, LinkParams, linkParamsValid } from '../../utils';
+import AutoJoinToggle from '../atoms/AutoJoinToggle';
 
 const JoinGame: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
@@ -74,6 +75,9 @@ const JoinGame: FC = () => {
                     config.requiresLauncher &&
                     <Button className="mt-3 mx-3" variant="outline-secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>
                 }
+            </div>
+            <div className={'mt-3'} style={{ display: 'inline-block' }}>
+                <AutoJoinToggle linkParams={linkParams} />
             </div>
             {
                 (config.requiresLauncher && config.launcher || config.hint) &&
