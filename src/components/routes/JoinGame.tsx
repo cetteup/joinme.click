@@ -77,7 +77,7 @@ const JoinGame: FC = () => {
             </div>
             {
                 (config.requiresLauncher && config.launcher || config.hint) &&
-                <div className="mt-3">
+                <div className="mt-3 mx-auto" style={{ maxWidth: '600px' }}>
                     <p className="text-white-50">
                         {
                             config.requiresLauncher && config.launcher &&
