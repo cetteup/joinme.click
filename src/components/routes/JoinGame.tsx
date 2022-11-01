@@ -69,6 +69,10 @@ const JoinGame: FC = () => {
                 mod && !mod.isXpack &&
                 <small className={'text-white-50'}>{mod.label} is a {config.label} mod</small>
             }
+            {
+                config.alert &&
+                <div className={'mt-3'}>{config.alert}</div>
+            }
             <div>
                 <JoinBtn className="mt-3 mx-3" linkParams={linkParams} />
                 {

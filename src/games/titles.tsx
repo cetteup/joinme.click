@@ -1,5 +1,6 @@
 import React from 'react';
 import { LauncherDetails, officialLauncher } from './launchers';
+import { Alert } from 'react-bootstrap';
 
 export type UrlType = 'ip-port' | 'gameId'
 export type ServerNameSrc = 'bflist' | 'gametools' | 'gamedig-lambda'
@@ -12,6 +13,7 @@ export type GameConfig = {
     requiresLauncher: boolean
     launcher?: LauncherDetails
     minLauncherVersion?: string
+    alert?: JSX.Element
     hint?: JSX.Element
     mods?: GameMod[]
     usesSteam?: boolean
@@ -81,6 +83,7 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.5-alpha',
+        alert: (<Alert key={'alert-bf4'} variant={'warning'}>Battlefield 4 requires Origin to launch, the EA app is currently not supported.</Alert>),
         serverNameSrc: 'gametools'
     },
     bf1: {
@@ -90,6 +93,7 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.5-alpha',
+        alert: (<Alert key={'alert-bf1'} variant={'warning'}>Battlefield 1 requires Origin to launch, the EA app is currently not supported.</Alert>),
         serverNameSrc: 'gametools'
     },
     cod: {

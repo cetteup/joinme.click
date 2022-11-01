@@ -26,6 +26,9 @@ const Home: FC = () => {
             <h1 className="display-6">Make it easy for anyone to join your server</h1>
             <p className={'mw-70'}>Select a game and enter the server&apos;s ip/game identifier (and port, if required). We will generate a link for you that anyone can use to join the server in just 2 clicks.</p>
             <Form className="my-3 mx-3">
+                {
+                    link.game?.alert
+                }
                 <Row>
                     <Col>
                         <Form.Group className='mb-3'>
