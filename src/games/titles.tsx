@@ -72,7 +72,7 @@ export const supportedGames: Record<string, GameConfig> = {
             { label: 'Allied Intent Xtended', slug: 'aix2' },
             { label: 'Battlefield Pirates 2 (Yarr2)', slug: 'bfp2' },
             { label: 'Point of Existence 2', slug: 'poe2' },
-            { label: 'Arctic Warfare', slug: 'arctic-warfare' }
+            { label: 'Arctic Warfare', slug: 'arctic_warfare' }
         ],
         serverNameSrc: 'bflist',
         bflistGame: 'bf2'
