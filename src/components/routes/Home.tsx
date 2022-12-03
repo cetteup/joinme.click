@@ -44,7 +44,7 @@ const Home: FC = () => {
                             <Form.Group className='mb-3'>
                                 <Form.Select id='modSelect' className='bg-dark text-white' size='lg' defaultValue='Select mod' onChange={e => setLink({ ...link, query: { ...link.query, mod: e.target.value }, copied: false })}>
                                     <option value={''}>Select mod (optional)</option>
-                                    {getModOptions(link.game.mods)}
+                                    {getModOptions(link.game.mods.sort((a, b) => a.label.localeCompare(b.label)))}
                                 </Form.Select>
                             </Form.Group>
                         </Col>
