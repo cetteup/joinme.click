@@ -66,7 +66,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.7-alpha',
+        minLauncherVersion: 'v0.1.11',
         mods: [
             { label: 'Special Forces', slug: 'xpack', isXpack: true },
             { label: 'Allied Intent Xtended', slug: 'aix2' },
