@@ -202,9 +202,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.12',
-        serverNameSrc: 'gamedig-lambda',
-        queryPortOffset: 1
+        minLauncherVersion: 'v0.1.12'
     },
     ut2004: {
         protocol: 'ut2004',
@@ -212,9 +210,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.12',
-        serverNameSrc: 'gamedig-lambda',
-        queryPortOffset: 1
+        minLauncherVersion: 'v0.1.12'
     },
     vietcong: {
         protocol: 'vietcong',
