@@ -20,6 +20,7 @@ export type GameConfig = {
     urlPrefix?: string
     serverNameSrc?: ServerNameSrc
     bflistGame?: BflistGame
+    queryPortOffset?: number
 }
 
 export type GameMod = {
@@ -184,6 +185,36 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha'
+    },
+    ut: {
+        protocol: 'ut',
+        label: 'Unreal Tournament',
+        urlType: 'ip-port',
+        requiresLauncher: true,
+        launcher: officialLauncher,
+        minLauncherVersion: 'v0.1.12',
+        serverNameSrc: 'gamedig-lambda',
+        queryPortOffset: 1
+    },
+    ut2003: {
+        protocol: 'ut2003',
+        label: 'Unreal Tournament 2003',
+        urlType: 'ip-port',
+        requiresLauncher: true,
+        launcher: officialLauncher,
+        minLauncherVersion: 'v0.1.12',
+        serverNameSrc: 'gamedig-lambda',
+        queryPortOffset: 1
+    },
+    ut2004: {
+        protocol: 'ut2004',
+        label: 'Unreal Tournament 2004',
+        urlType: 'ip-port',
+        requiresLauncher: true,
+        launcher: officialLauncher,
+        minLauncherVersion: 'v0.1.12',
+        serverNameSrc: 'gamedig-lambda',
+        queryPortOffset: 1
     },
     vietcong: {
         protocol: 'vietcong',

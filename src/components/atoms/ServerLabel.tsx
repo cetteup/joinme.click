@@ -40,7 +40,11 @@ async function fetchServerName(gameConfig: GameConfig, host: string, port?: stri
         return fetchServerNameGametools(gameConfig.protocol, host);
     }
     else if (gameConfig.serverNameSrc == 'gamedig-lambda' && port) {
-        return fetchServerNameGamedigLambda(gameConfig.protocol, host, port);
+        return fetchServerNameGamedigLambda(
+            gameConfig.protocol,
+            host,
+            gameConfig.queryPortOffset ? (Number(port) + gameConfig.queryPortOffset).toString() : port
+        );
     }
 }
 
