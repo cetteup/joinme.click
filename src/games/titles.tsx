@@ -15,7 +15,7 @@ export type GameConfig = {
     usesSteam?: boolean
     urlPrefix?: string
     serverNameConfig?: {
-        provider: 'bflist' | 'gametools' | 'gamedig-lambda'
+        provider: 'bflist' | 'gametools' | 'gamedig-lambda' | 'gametracker-lambda'
         gameName?: string
         queryPortOffset?: number
     }
@@ -191,7 +191,11 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.3-alpha'
+        minLauncherVersion: 'v0.1.3-alpha',
+        serverNameConfig: {
+            provider: 'gametracker-lambda',
+            gameName: 'swat4'
+        }
     },
     swat4x: {
         protocol: 'swat4x',
@@ -199,7 +203,11 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.3-alpha'
+        minLauncherVersion: 'v0.1.3-alpha',
+        serverNameConfig: {
+            provider: 'gametracker-lambda',
+            gameName: 'swat4'
+        }
     },
     ut: {
         protocol: 'ut',
