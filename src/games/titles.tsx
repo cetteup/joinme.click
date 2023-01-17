@@ -164,6 +164,10 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: false,
         hint: (<small>ET: Legacy does not require a launcher. You only need to have the game installed, which you can get at <a href={'https://www.etlegacy.com/download'} target='_blank' className="text-white" rel="noreferrer">etlegacy.com/download</a></small>),
+        serverNameConfig: {
+            provider: 'gametracker-lambda',
+            gameName: 'et'
+        }
     },
     fearsec2: {
         protocol: 'fearsec2',
@@ -171,7 +175,11 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.3-alpha'
+        minLauncherVersion: 'v0.1.3-alpha',
+        serverNameConfig: {
+            provider: 'gametracker-lambda',
+            gameName: 'fear'
+        }
     },
     paraworld: {
         protocol: 'paraworld',
