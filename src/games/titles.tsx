@@ -2,14 +2,10 @@ import React from 'react';
 import { LauncherDetails, officialLauncher } from './launchers';
 import { Alert } from 'react-bootstrap';
 
-export type UrlType = 'ip-port' | 'gameId'
-export type ServerNameSrc = 'bflist' | 'gametools' | 'gamedig-lambda'
-export type BflistGame = 'bf1942' | 'bfvietnam' | 'bf2'
-
 export type GameConfig = {
     protocol: string
     label: string
-    urlType: UrlType
+    urlType: 'ip-port' | 'gameId'
     requiresLauncher: boolean
     launcher?: LauncherDetails
     minLauncherVersion?: string
@@ -18,9 +14,11 @@ export type GameConfig = {
     mods?: GameMod[]
     usesSteam?: boolean
     urlPrefix?: string
-    serverNameSrc?: ServerNameSrc
-    bflistGame?: BflistGame
-    queryPortOffset?: number
+    serverNameConfig?: {
+        provider: 'bflist' | 'gametools' | 'gamedig-lambda'
+        gameName?: string
+        queryPortOffset?: number
+    }
 }
 
 export type GameMod = {
@@ -45,8 +43,9 @@ export const supportedGames: Record<string, GameConfig> = {
             { label: 'Desert Combat Final', slug: 'dc_final' },
             { label: 'Pirates', slug: 'pirates' }
         ],
-        serverNameSrc: 'bflist',
-        bflistGame: 'bf1942'
+        serverNameConfig: {
+            provider: 'bflist'
+        }
     },
     bfvietnam: {
         protocol: 'bfvietnam',
@@ -58,8 +57,9 @@ export const supportedGames: Record<string, GameConfig> = {
         mods: [
             { label: 'Battlegroup 42', slug: 'battlegroup42' }
         ],
-        serverNameSrc: 'bflist',
-        bflistGame: 'bfvietnam'
+        serverNameConfig: {
+            provider: 'bflist'
+        }
     },
     bf2: {
         protocol: 'bf2',
@@ -75,8 +75,9 @@ export const supportedGames: Record<string, GameConfig> = {
             { label: 'Point of Existence 2', slug: 'poe2' },
             { label: 'Arctic Warfare', slug: 'arctic_warfare' }
         ],
-        serverNameSrc: 'bflist',
-        bflistGame: 'bf2'
+        serverNameConfig: {
+            provider: 'bflist'
+        }
     },
     bf4: {
         protocol: 'bf4',
@@ -86,7 +87,9 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.5-alpha',
         alert: (<Alert key={'alert-bf4'} variant={'warning'}>Battlefield 4 requires Origin to launch, the EA app is currently not supported.</Alert>),
-        serverNameSrc: 'gametools'
+        serverNameConfig: {
+            provider: 'gametools'
+        }
     },
     bf1: {
         protocol: 'bf1',
@@ -96,7 +99,9 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.5-alpha',
         alert: (<Alert key={'alert-bf1'} variant={'warning'}>Battlefield 1 requires Origin to launch, the EA app is currently not supported.</Alert>),
-        serverNameSrc: 'gametools'
+        serverNameConfig: {
+            provider: 'gametools'
+        }
     },
     cod: {
         protocol: 'cod',
@@ -105,7 +110,9 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
-        serverNameSrc: 'gamedig-lambda'
+        serverNameConfig: {
+            provider: 'gamedig-lambda'
+        }
     },
     coduo: {
         protocol: 'coduo',
@@ -114,7 +121,9 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
-        serverNameSrc: 'gamedig-lambda'
+        serverNameConfig: {
+            provider: 'gamedig-lambda'
+        }
     },
     cod2: {
         protocol: 'cod2',
@@ -123,7 +132,9 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
-        serverNameSrc: 'gamedig-lambda'
+        serverNameConfig: {
+            provider: 'gamedig-lambda'
+        }
     },
     cod4: {
         protocol: 'cod4',
@@ -132,7 +143,9 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
-        serverNameSrc: 'gamedig-lambda'
+        serverNameConfig: {
+            provider: 'gamedig-lambda'
+        }
     },
     codwaw: {
         protocol: 'codwaw',
@@ -141,7 +154,9 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
-        serverNameSrc: 'gamedig-lambda'
+        serverNameConfig: {
+            provider: 'gamedig-lambda'
+        }
     },
     et: {
         protocol: 'et',
@@ -193,8 +208,10 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.12',
-        serverNameSrc: 'gamedig-lambda',
-        queryPortOffset: 1
+        serverNameConfig: {
+            provider: 'gamedig-lambda',
+            queryPortOffset: 1
+        }
     },
     ut2003: {
         protocol: 'ut2003',
@@ -202,7 +219,12 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.12'
+        minLauncherVersion: 'v0.1.12',
+        serverNameConfig: {
+            provider: 'gamedig-lambda',
+            gameName: 'protocol-gamespy1', // GameSpy protocol is *way* faster than Unreal
+            queryPortOffset: 10
+        }
     },
     ut2004: {
         protocol: 'ut2004',
@@ -210,7 +232,12 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.12'
+        minLauncherVersion: 'v0.1.12',
+        serverNameConfig: {
+            provider: 'gamedig-lambda',
+            gameName: 'protocol-gamespy1', // GameSpy protocol is *way* faster than Unreal
+            queryPortOffset: 10
+        }
     },
     vietcong: {
         protocol: 'vietcong',

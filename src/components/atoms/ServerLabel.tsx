@@ -14,7 +14,7 @@ const ServerLabel: FC<ServerLabelProps & React.HTMLAttributes<HTMLSpanElement>> 
         label += `:${port}`;
     }
 
-    if (gameConfig.serverNameSrc) {
+    if (gameConfig.serverNameConfig) {
         const { isLoading, error, data } = useQuery('serverName', () =>
             fetchServerName(gameConfig, host, port)
         , {
@@ -33,17 +33,22 @@ const ServerLabel: FC<ServerLabelProps & React.HTMLAttributes<HTMLSpanElement>> 
 };
 
 async function fetchServerName(gameConfig: GameConfig, host: string, port?: string): Promise<string | undefined> {
-    if (gameConfig.serverNameSrc == 'bflist' && gameConfig.bflistGame && port) {
-        return fetchServerNameBflist(gameConfig.bflistGame, host, port);
+    if (!gameConfig.serverNameConfig) {
+        return;
     }
-    else if (gameConfig.serverNameSrc == 'gametools') {
-        return fetchServerNameGametools(gameConfig.protocol, host);
+
+    const { provider, gameName, queryPortOffset } = gameConfig.serverNameConfig;
+    if (provider == 'bflist' && port) {
+        return fetchServerNameBflist(gameName || gameConfig.protocol, host, port);
     }
-    else if (gameConfig.serverNameSrc == 'gamedig-lambda' && port) {
+    else if (provider == 'gametools') {
+        return fetchServerNameGametools(gameName || gameConfig.protocol, host);
+    }
+    else if (provider == 'gamedig-lambda' && port) {
         return fetchServerNameGamedigLambda(
-            gameConfig.protocol,
+            gameName || gameConfig.protocol,
             host,
-            gameConfig.queryPortOffset ? (Number(port) + gameConfig.queryPortOffset).toString() : port
+            queryPortOffset ? (Number(port) + queryPortOffset).toString() : port
         );
     }
 }
@@ -81,7 +86,10 @@ async function fetchServerNameGamedigLambda(game: string, host: string, port: st
     });
     const resp = await fetch(`https://server-names.joinme.click/gamedig-lambda?${params}`);
     if (resp.ok) {
-        return (await resp.json()).name;
+        const { name } = await resp.json();
+        // Remove colors from name
+        // eslint-disable-next-line no-control-regex
+        return name.replace(/\x1b...|[\x00-\x1a]/g, '');
     }
     else {
         throw Error(resp.statusText);
