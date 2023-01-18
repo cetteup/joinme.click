@@ -124,7 +124,7 @@ const JoinGame: FC<JoinGameProps> = ({ game, gameConfig, host, port, modSlug, se
     return (
         <>
             <Head>
-                <title>Join {serverName}, a {getGameLabel(gameConfig, modSlug)} server</title>
+                <title>{`Join ${serverName}, a ${getGameLabel(gameConfig, modSlug)} server`}</title>
             </Head>
             <h1 className="display-6">You have been invited to join <span className={'text-primary'}>{serverName}</span>, a <em>{getGameLabel(gameConfig, modSlug)}</em> server</h1>
             {
