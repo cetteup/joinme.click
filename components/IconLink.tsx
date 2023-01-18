@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import Link from 'next/link';
 
 type IconLinkProps = {
     icon: string
@@ -8,7 +9,7 @@ type IconLinkProps = {
 
 const IconLink: FC<IconLinkProps> = ({ icon, href, title }) => {
     return (
-        <span className='mx-3'><a href={href} title={title}><i className={icon + ' text-white-50'}/></a></span>
+        <span className='mx-3'><Link href={href} title={title}><i className={icon + ' text-white-50'}/></Link></span>
     );
 };
 

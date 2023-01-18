@@ -1,59 +1,38 @@
-import React, { FC } from 'react';
-import { GameConfig } from '../../games/titles';
-import { useQuery } from 'react-query';
+import { GameConfig } from './titles';
 
-interface ServerLabelProps {
-    gameConfig: GameConfig
-    host: string
-    port?: string
+export function buildFallbackServerName(gameConfig: GameConfig, host: string, port?: string): string {
+    let serverName = host;
+    if (gameConfig.urlType == 'ip-port' && port) {
+        serverName += `:${port}`;
+    }
+    return serverName;
 }
 
-const ServerLabel: FC<ServerLabelProps & React.HTMLAttributes<HTMLSpanElement>> = ({ gameConfig, host, port , ...props }) => {
-    let label = host;
-    if (gameConfig.urlType == 'ip-port' && port) {
-        label += `:${port}`;
-    }
-
-    if (gameConfig.serverNameConfig) {
-        const { isLoading, error, data } = useQuery('serverName', () =>
-            fetchServerName(gameConfig, host, port)
-        , {
-            staleTime: Infinity,
-            cacheTime: Infinity,
-            retry: 2,
-            refetchOnWindowFocus: false
-        });
-
-        if (!isLoading && !error) label = data ?? label;
-    }
-
-    return (
-        <span {...props}>{label}</span>
-    );
-};
-
-async function fetchServerName(gameConfig: GameConfig, host: string, port?: string): Promise<string | undefined> {
+export async function fetchServerName(gameConfig: GameConfig, host: string, port?: string): Promise<string> {
+    const fallback = buildFallbackServerName(gameConfig, host, port);
     if (!gameConfig.serverNameConfig) {
-        return;
+        return fallback;
     }
 
     const { provider, gameName, queryPortOffset } = gameConfig.serverNameConfig;
     if (provider == 'bflist' && port) {
         return fetchServerNameBflist(gameName || gameConfig.protocol, host, port);
     }
-    else if (provider == 'gametools') {
+    if (provider == 'gametools') {
         return fetchServerNameGametools(gameName || gameConfig.protocol, host);
     }
-    else if (provider == 'gamedig-lambda' && port) {
+    if (provider == 'gamedig-lambda' && port) {
         return fetchServerNameGamedigLambda(
             gameName || gameConfig.protocol,
             host,
             queryPortOffset ? (Number(port) + queryPortOffset).toString() : port
         );
     }
-    else if (provider == 'gametracker-lambda' && port) {
+    if (provider == 'gametracker-lambda' && port) {
         return fetchServerNameGametrackerLambda(gameName || gameConfig.protocol, host, port);
     }
+    
+    return fallback;
 }
 
 async function fetchServerNameBflist(game: string, ip: string, port: string): Promise<string> {
@@ -129,5 +108,3 @@ async function fetchServerNameGametrackerLambda(game: string, host: string, port
         throw Error(resp.statusText);
     }
 }
-
-export default ServerLabel;

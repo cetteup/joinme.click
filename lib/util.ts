@@ -1,5 +1,10 @@
-import { GameConfig, GameMod } from './games/titles';
-import React from 'react';
+import { GameConfig } from './titles';
+
+export function setIfDefined<T, K extends keyof T>(obj: T, property: K, v: T[K]): void {
+    if (v !== undefined) {
+        obj[property] = v;
+    }
+}
 
 export type LinkParams = {
     game?: GameConfig
@@ -95,15 +100,6 @@ export function buildJoinMeLink(link: LinkParams): string {
     }
 
     return url;
-}
-
-export function getModOptions(mods: GameMod[]): JSX.Element[] {
-    const modOptions: JSX.Element[] = [];
-    for (const mod of mods) {
-        modOptions.push(<option key={mod.slug} value={mod.slug}>{mod.label}</option>);
-    }
-    
-    return modOptions;
 }
 
 export function getGameLabel(config: GameConfig, modSlug: string | undefined): string {

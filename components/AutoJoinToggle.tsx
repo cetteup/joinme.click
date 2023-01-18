@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
-import { useLocalStorage } from '../../hooks';
-import { buildGameUrl, LinkParams } from '../../utils';
+import { useLocalStorage } from '../lib/hooks';
+import { buildGameUrl, LinkParams } from '../lib/util';
 
 type AutoJoinToggleProps = {
     linkParams: LinkParams

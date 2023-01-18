@@ -1,16 +1,16 @@
 import React, { FC, useRef, useState } from 'react';
 import { Button, Col, Form, Overlay, Row, Tooltip } from 'react-bootstrap';
-import { supportedGames } from '../../games/titles';
+import { GameMod, supportedGames } from '../lib/titles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import JoinBtn from '../atoms/JoinBtn';
-import DownloadModal from '../atoms/DownloadModal';
-import { buildGameUrl, buildJoinMeLink, getModOptions, LinkParams, linkParamsValid } from '../../utils';
+import JoinBtn from '../components/JoinBtn';
+import DownloadModal from '../components/DownloadModal';
+import { buildGameUrl, buildJoinMeLink, LinkParams, linkParamsValid } from '../lib/util';
 
 type LinkState = LinkParams & {
     copied: boolean
 }
 
-const Home: FC = () => {
+const Index: FC = () => {
     const [modalShow, setModalShow] = React.useState(false);
     const [link, setLink] = useState<LinkState>( { copied: false });
     const target = useRef(null);
@@ -136,4 +136,13 @@ const Home: FC = () => {
     );
 };
 
-export default Home;
+function getModOptions(mods: GameMod[]): JSX.Element[] {
+    const modOptions: JSX.Element[] = [];
+    for (const mod of mods) {
+        modOptions.push(<option key={mod.slug} value={mod.slug}>{mod.label}</option>);
+    }
+
+    return modOptions;
+}
+
+export default Index;

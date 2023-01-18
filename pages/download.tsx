@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Button } from 'react-bootstrap';
-import { officialLauncher } from '../../games/launchers';
+import { officialLauncher } from '../lib/launchers';
 
 const Download: FC = () => {
     return (

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Button from 'react-bootstrap/Button';
-import { buildGameUrl, LinkParams } from '../../utils';
+import { buildGameUrl, LinkParams } from '../lib/util';
 
 type JoinBtnProps = {
     linkParams: LinkParams
