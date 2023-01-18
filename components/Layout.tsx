@@ -18,7 +18,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
                 <meta name="theme-color" content="#000000"/>
                 <meta
                     name="description"
-                    content="joinme.click allows you to join your favorite game servers right from the browser with a single click. Supports Battlefield 2, ParaWorld and more."
+                    content="joinme.click allows you to join game servers right from the browser with a single click. Supports Battlefield, Call of Duty and more."
                 />
                 <link rel="apple-touch-icon" href="/logo192.png"/>
                 <link rel="manifest" href="/manifest.json"/>
