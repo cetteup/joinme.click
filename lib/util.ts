@@ -37,7 +37,8 @@ export function isValidIP(ip: string): boolean {
 
 export function isValidPort(port: string): boolean {
     const numeric = parseInt(port);
-    return numeric >= 1 && numeric <= 65535;
+    // Parse int will also parse something like "12abdef" to a valid number (12), so check that the length matches as well
+    return numeric >= 1 && numeric <= 65535 && numeric.toString().length == port.length;
 }
 
 export function isValidGameID(gameID: string): boolean {
