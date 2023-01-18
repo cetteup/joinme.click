@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import JoinBtn from '../../../components/JoinBtn';
 import { Button } from 'react-bootstrap';
 import DownloadModal from '../../../components/DownloadModal';
-import { GameConfig, supportedGames } from '../../../lib/titles';
+import { supportedGames } from '../../../lib/titles';
 import AutoJoinToggle from '../../../components/AutoJoinToggle';
 import Head from 'next/head';
 import { GetServerSidePropsContext, GetServerSidePropsResult, InferGetServerSidePropsType } from 'next';
@@ -11,7 +11,6 @@ import { getGameLabel, LinkParams, linkParamsValid, setIfDefined } from '../../.
 
 type JoinGameProps = {
     game?: string
-    gameConfig?: GameConfig
     host?: string
     port?: string
     modSlug?: string
@@ -44,8 +43,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext): Pr
     setIfDefined(props, 'host', host);
     setIfDefined(props, 'port', port);
 
+    // Can't return game config via props, since it may JSX elements (which are not JSON serializable)
     const gameConfig = supportedGames[game];
-    setIfDefined(props, 'gameConfig', gameConfig);
     if (!gameConfig) {
         return {
             props
@@ -73,7 +72,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext): Pr
     };
 }
 
-const JoinGame: FC<JoinGameProps> = ({ game, gameConfig, host, port, modSlug, serverName }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const JoinGame: FC<JoinGameProps> = ({ game, host, port, modSlug, serverName }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const [modalShow, setModalShow] = React.useState(false);
 
     if (!game || !host) {
@@ -82,6 +81,7 @@ const JoinGame: FC<JoinGameProps> = ({ game, gameConfig, host, port, modSlug, se
         );
     }
 
+    const gameConfig = supportedGames[game];
     if (!gameConfig) {
         return (
             <h1 className="text-white-50 display-6"><q>{game}</q> is currently not supported</h1>
