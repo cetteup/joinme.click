@@ -18,6 +18,10 @@ type JoinGameProps = {
     serverName?: string
 }
 
+export const config = {
+    runtime: 'experimental-edge',
+};
+
 export async function getServerSideProps(context: GetServerSidePropsContext): Promise<GetServerSidePropsResult<JoinGameProps>> {
     const props: JoinGameProps = {};
     const { query } = context;
