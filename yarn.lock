@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@adobe/css-tools@^4.0.1":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@adobe/css-tools/-/css-tools-4.0.2.tgz#bd7d13543a186c3ff3eabb44bec2b22e8fb18ee0"
+  integrity sha512-Fx6tYjk2wKUgLi8uMANZr8GNZx05u44ArIJldn9VxLvolzlJVgHbTUCbwhMd6bcYky178+WUSxPHO3DAtGLWpw==
+
 "@babel/code-frame@^7.10.4":
   version "7.18.6"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.18.6.tgz"
@@ -212,16 +217,16 @@
     lz-string "^1.4.4"
     pretty-format "^27.0.2"
 
-"@testing-library/jest-dom@5.16.4":
-  version "5.16.4"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.16.4.tgz#938302d7b8b483963a3ae821f1c0808f872245cd"
-  integrity sha512-Gy+IoFutbMQcky0k+bqqumXZ1cTGswLsFqmNLzNdSKkU9KGV2u9oXhukCbbJ9/LRPKiqwxEE8VpV/+YZlfkPUA==
+"@testing-library/jest-dom@5.16.5":
+  version "5.16.5"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.16.5.tgz#3912846af19a29b2dbf32a6ae9c31ef52580074e"
+  integrity sha512-N5ixQ2qKpi5OLYfwQmUb/5mSV9LneAcaUfp32pn4yCnpb8r/Yz0pXFPck21dIicKmi+ta5WRAknkZCfA8refMA==
   dependencies:
+    "@adobe/css-tools" "^4.0.1"
     "@babel/runtime" "^7.9.2"
     "@types/testing-library__jest-dom" "^5.9.1"
     aria-query "^5.0.0"
     chalk "^3.0.0"
-    css "^3.0.0"
     css.escape "^1.5.1"
     dom-accessibility-api "^0.5.6"
     lodash "^4.17.15"
@@ -483,11 +488,6 @@ array.prototype.flatmap@^1.3.0:
     es-abstract "^1.19.2"
     es-shim-unscopables "^1.0.0"
 
-atob@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.npmjs.org/atob/-/atob-2.1.2.tgz"
-  integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
-
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
@@ -621,15 +621,6 @@ css.escape@^1.5.1:
   resolved "https://registry.npmjs.org/css.escape/-/css.escape-1.5.1.tgz"
   integrity sha1-QuJ9T6BK4y+TGktNQZH6nN3ul8s=
 
-css@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/css/-/css-3.0.0.tgz"
-  integrity sha512-DG9pFfwOrzc+hawpmqX/dHYHJG+Bsdb0klhyi1sDneOgGOXy9wQIC8hzyVp1e4NRYDBdxcylvywPkkXCHAzTyQ==
-  dependencies:
-    inherits "^2.0.4"
-    source-map "^0.6.1"
-    source-map-resolve "^0.6.0"
-
 csstype@^3.0.2:
   version "3.0.11"
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.0.11.tgz"
@@ -641,11 +632,6 @@ debug@^4.1.1, debug@^4.3.2:
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
-
-decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/decode-uri-component/-/decode-uri-component-0.2.0.tgz"
-  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
 deep-is@^0.1.3:
   version "0.1.4"
@@ -1115,7 +1101,7 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-inherits@2, inherits@^2.0.4:
+inherits@2:
   version "2.0.4"
   resolved "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
@@ -1742,19 +1728,6 @@ source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/source-map-js/-/source-map-js-1.0.2.tgz"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
-
-source-map-resolve@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.npmjs.org/source-map-resolve/-/source-map-resolve-0.6.0.tgz"
-  integrity sha512-KXBr9d/fO/bWo97NXsPIAW1bFSBOuCnjbNTBMO7N59hsv5i9yzRDfcYwwt0l04+VqnKC+EwzvJZIP/qkuMgR/w==
-  dependencies:
-    atob "^2.1.2"
-    decode-uri-component "^0.2.0"
-
-source-map@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz"
-  integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
 string.prototype.matchall@^4.0.7:
   version "4.0.7"
