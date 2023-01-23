@@ -10,7 +10,7 @@ import Script from 'next/script';
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <>
-            <Script strategy={'afterInteractive'} data-domain={'joinme-click'} src={'https://plausible.cetteup.com/js/plausible.js'} />
+            <Script strategy={'afterInteractive'} data-domain={'joinme.click'} src={'https://plausible.cetteup.com/js/plausible.js'} />
             <Layout>
                 <Component {...pageProps} />
             </Layout>
