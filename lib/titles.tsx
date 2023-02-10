@@ -76,7 +76,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.11',
+        minLauncherVersion: 'v0.2.0',
         mods: [
             { label: 'Special Forces', slug: 'xpack', isXpack: true },
             { label: 'Allied Intent Xtended', slug: 'aix2' },
@@ -118,7 +118,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.3-alpha',
+        minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
             provider: 'gamedig-lambda'
         }
@@ -129,7 +129,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.3-alpha',
+        minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
             provider: 'gamedig-lambda'
         }
@@ -140,7 +140,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.3-alpha',
+        minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
             provider: 'gamedig-lambda'
         }
@@ -151,7 +151,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.3-alpha',
+        minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
             provider: 'gamedig-lambda'
         }
@@ -162,7 +162,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.3-alpha',
+        minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
             provider: 'gamedig-lambda'
         }
@@ -256,7 +256,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.12',
+        minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
             provider: 'gamedig-lambda',
             queryPortOffset: 1
@@ -281,7 +281,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'ip-port',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.12',
+        minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
             provider: 'gamedig-lambda',
             gameName: 'protocol-gamespy1', // GameSpy protocol is *way* faster than Unreal
