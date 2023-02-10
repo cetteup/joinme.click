@@ -104,7 +104,7 @@ const Index: FC = () => {
 
             {
                 (link.game?.requiresLauncher && link.game?.launcher || link.game?.hint) &&
-                <div className="mt-3">
+                <div className="mt-3 mx-auto" style={{ maxWidth: '680px' }}>
                     <p className="text-white-50">
                         {
                             link.game.requiresLauncher && link.game.launcher &&
