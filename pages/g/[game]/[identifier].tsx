@@ -43,7 +43,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext): Pr
     setIfDefined(props, 'host', host);
     setIfDefined(props, 'port', port);
 
-    // Can't return game config via props, since it may JSX elements (which are not JSON serializable)
+    // Can't return game config via props, since it may contain JSX elements (which are not JSON serializable)
     const gameConfig = supportedGames[game];
     if (!gameConfig) {
         return {
