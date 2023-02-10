@@ -178,6 +178,18 @@ export const supportedGames: Record<string, GameConfig> = {
             gameName: 'et'
         }
     },
+    fear: {
+        protocol: 'fear',
+        label: 'F.E.A.R./F.E.A.R. Combat',
+        urlType: 'ip-port',
+        requiresLauncher: true,
+        launcher: officialLauncher,
+        minLauncherVersion: 'v0.2.0',
+        serverNameConfig: {
+            provider: 'gametracker-lambda',
+            gameName: 'fear'
+        }
+    },
     fearsec2: {
         protocol: 'fearsec2',
         label: 'F.E.A.R. Combat (SEC2)',
