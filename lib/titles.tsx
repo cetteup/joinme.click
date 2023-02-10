@@ -238,6 +238,18 @@ export const supportedGames: Record<string, GameConfig> = {
             gameName: 'swat4'
         }
     },
+    unreal: {
+        protocol: 'unreal',
+        label: 'Unreal',
+        urlType: 'ip-port',
+        requiresLauncher: true,
+        launcher: officialLauncher,
+        minLauncherVersion: 'v0.2.0',
+        serverNameConfig: {
+            provider: 'gamedig-lambda',
+            queryPortOffset: 1
+        }
+    },
     ut: {
         protocol: 'ut',
         label: 'Unreal Tournament',
