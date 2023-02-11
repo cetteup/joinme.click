@@ -17,13 +17,8 @@ type JoinGameProps = {
     serverName?: string
 }
 
-export const config = {
-    runtime: 'experimental-edge',
-};
-
-export async function getServerSideProps(context: GetServerSidePropsContext): Promise<GetServerSidePropsResult<JoinGameProps>> {
+export async function getServerSideProps({ query, res }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<JoinGameProps>> {
     const props: JoinGameProps = {};
-    const { query } = context;
     const { game, identifier, mod: modSlug } = query;
     if (Array.isArray(game) || Array.isArray(identifier) || Array.isArray(modSlug)) {
         return {
@@ -60,6 +55,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext): Pr
     let serverName: string;
     try {
         serverName = await fetchServerName(gameConfig, host, port);
+        // Cache props with resolved server names for 6 hours
+        res.setHeader('Cache-Control', 'public, max-age=21600, stale-while-revalidate=600');
     } catch {
         serverName = buildFallbackServerName(gameConfig, host, port);
     }
