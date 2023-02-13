@@ -28,15 +28,6 @@ export type GameMod = {
 }
 
 export const supportedGames: Record<string, GameConfig> = {
-    sevendays: {
-        protocol: 'sevendays',
-        label: '7 Days To Die',
-        urlType: 'ip-port',
-        requiresLauncher: false,
-        hint: (<small>7 Days To Die is launched via Steam.</small>),
-        usesSteam: true,
-        urlPrefix: 'rungameid/251570// +connect '
-    },
     bf1942: {
         protocol: 'bf1942',
         label: 'Battlefield 1942',
