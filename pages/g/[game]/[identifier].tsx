@@ -133,10 +133,10 @@ const JoinGame: FC<JoinGameProps> = ({ game, host, port, modSlug, serverName }: 
                 <div className={'mt-3'}>{gameConfig.alert}</div>
             }
             <div>
-                <JoinBtn className="mt-3 mx-3" linkParams={linkParams} />
+                <JoinBtn className="mt-3 mx-2" linkParams={linkParams} />
                 {
                     gameConfig.requiresLauncher &&
-                    <Button className="mt-3 mx-3" variant="outline-secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>
+                    <Button className="mt-3 mx-2" variant="secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>
                 }
             </div>
             <div className={'mt-3'} style={{ display: 'inline-block' }}>

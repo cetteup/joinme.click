@@ -84,7 +84,7 @@ const Index: FC = () => {
 
             <div>
                 <CopyToClipboard text={buildJoinMeLink(link)} onCopy={() => setLink({ ...link, copied: true })}>
-                    <Button ref={target} className='m-2' variant="outline-primary" size="lg" disabled={!linkParamsValid(link)}>Copy joinme.click link</Button>
+                    <Button ref={target} className='m-2' variant={linkParamsValid(link) ? 'primary' : 'outline-primary'} size="lg" disabled={!linkParamsValid(link)}>Copy joinme.click link</Button>
                 </CopyToClipboard>
                 <Overlay target={target.current} show={link.copied} placement="left">
                     {(props) => (
@@ -98,7 +98,7 @@ const Index: FC = () => {
 
                 {
                     link.game?.requiresLauncher &&
-                    <Button className="m-2" variant="outline-secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>
+                    <Button className="m-2" variant="secondary" size="lg" onClick={() => setModalShow(true)}>Download launcher</Button>
                 }
             </div>
 

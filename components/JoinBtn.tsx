@@ -10,7 +10,7 @@ type JoinBtnProps = {
 const JoinBtn: FC<JoinBtnProps & React.HTMLAttributes<HTMLButtonElement>> = ({ linkParams, disabled, ...props }) => {
     const joinUrl = buildGameUrl(linkParams);
     return (
-        <Button variant="outline-primary" size="lg" href={!disabled ? joinUrl : undefined} disabled={disabled} {...props}>Launch game and join</Button>
+        <Button variant={!disabled ? 'primary' : 'outline-primary'} size="lg" href={!disabled ? joinUrl : undefined} disabled={disabled} {...props}>Launch game and join</Button>
     );
 };
 
