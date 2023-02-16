@@ -122,6 +122,7 @@ const Index: FC = () => {
                 link.game?.requiresLauncher && link.game?.launcher &&
                 <DownloadModal
                     title={`Download the launcher (${link.game.launcher.currentVersion})`}
+                    game={link.game.label}
                     protocol={link.game.protocol}
                     sourceURL={link.game.launcher.sourceURL}
                     sourceProvider={link.game.launcher.sourceProvider}

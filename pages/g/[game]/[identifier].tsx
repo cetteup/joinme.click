@@ -162,6 +162,7 @@ const JoinGame: FC<JoinGameProps> = ({ game, host, port, modSlug, serverName }: 
                 gameConfig.requiresLauncher && gameConfig.launcher &&
                 <DownloadModal
                     title={`Download the launcher (${gameConfig.launcher.currentVersion})`}
+                    game={gameConfig.label}
                     protocol={gameConfig.protocol}
                     sourceURL={gameConfig.launcher.sourceURL}
                     sourceProvider={gameConfig.launcher.sourceProvider}
