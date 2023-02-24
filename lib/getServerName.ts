@@ -1,4 +1,5 @@
 import { GameConfig } from './titles';
+import Gamedig from 'gamedig';
 
 export function buildFallbackServerName(gameConfig: GameConfig, host: string, port?: string): string {
     let serverName = host;
@@ -21,8 +22,8 @@ export async function fetchServerName(gameConfig: GameConfig, host: string, port
     if (provider == 'gametools') {
         return fetchServerNameGametools(gameName || gameConfig.protocol, host);
     }
-    if (provider == 'gamedig-lambda' && port) {
-        return fetchServerNameGamedigLambda(
+    if (provider == 'gamedig' && port) {
+        return fetchServerNameGamedig(
             gameName || gameConfig.protocol,
             host,
             queryPortOffset ? (Number(port) + queryPortOffset).toString() : port
@@ -33,7 +34,7 @@ export async function fetchServerName(gameConfig: GameConfig, host: string, port
 }
 
 async function fetchServerNameBflist(game: string, ip: string, port: string): Promise<string> {
-    const resp = await fetch(`https://server-names.joinme.click/bflist/${game}/${ip}:${port}`);
+    const resp = await fetch(`https://api.bflist.io/${game}/v1/servers/${ip}:${port}/name`);
     if (resp.ok) {
         return resp.text();
     }
@@ -45,9 +46,10 @@ async function fetchServerNameBflist(game: string, ip: string, port: string): Pr
 async function fetchServerNameGametools(game: string, gameID: string): Promise<string> {
     const params = new URLSearchParams({
         gameid: gameID,
-        platform: 'pc'
+        platform: 'pc',
+        lang: 'en-us'
     });
-    const resp = await fetch(`https://server-names.joinme.click/gametools/${game}?${params}`);
+    const resp = await fetch(`https://api.gametools.network/${game}/detailedserver/?${params}`);
 
     if (resp.ok) {
         return (await resp.json()).prefix;
@@ -57,20 +59,15 @@ async function fetchServerNameGametools(game: string, gameID: string): Promise<s
     }
 }
 
-async function fetchServerNameGamedigLambda(game: string, host: string, port: string): Promise<string> {
-    const params = new URLSearchParams({
-        type: game,
+async function fetchServerNameGamedig(game: string, host: string, port: string): Promise<string> {
+    const { name } = await Gamedig.query({
+        type: game as Gamedig.Type,
         host: host,
-        port: port
+        port: Number(port),
+        givenPortOnly: true,
+        socketTimeout: 500
     });
-    const resp = await fetch(`https://server-names.joinme.click/gamedig-lambda?${params}`);
-    if (resp.ok) {
-        const { name } = await resp.json();
-        // Remove colors from name
-        // eslint-disable-next-line no-control-regex
-        return name.replace(/\x1b...|[\x00-\x1a]/g, '');
-    }
-    else {
-        throw Error(resp.statusText);
-    }
+    // Remove colors from name
+    // eslint-disable-next-line no-control-regex
+    return name.replace(/\x1b...|[\x00-\x1a]/g, '');
 }

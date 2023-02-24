@@ -55,8 +55,8 @@ export async function getServerSideProps({ query, res }: GetServerSidePropsConte
     let serverName: string;
     try {
         serverName = await fetchServerName(gameConfig, host, port);
-        // Cache props with resolved server names for 6 hours
-        res.setHeader('Cache-Control', 'public, max-age=21600, stale-while-revalidate=600');
+        // Cache props with resolved server names for 12 hours
+        res.setHeader('Cache-Control', 'public, max-age=43200, stale-while-revalidate=600');
     } catch {
         serverName = buildFallbackServerName(gameConfig, host, port);
     }

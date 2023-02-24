@@ -15,7 +15,7 @@ export type GameConfig = {
     usesSteam?: boolean
     urlPrefix?: string
     serverNameConfig?: {
-        provider: 'bflist' | 'gametools' | 'gamedig-lambda'
+        provider: 'bflist' | 'gametools' | 'gamedig'
         gameName?: string
         queryPortOffset?: number
     }
@@ -111,7 +111,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
-            provider: 'gamedig-lambda'
+            provider: 'gamedig'
         }
     },
     coduo: {
@@ -122,7 +122,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
-            provider: 'gamedig-lambda'
+            provider: 'gamedig'
         }
     },
     cod2: {
@@ -133,7 +133,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
-            provider: 'gamedig-lambda'
+            provider: 'gamedig'
         }
     },
     cod4: {
@@ -144,7 +144,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
-            provider: 'gamedig-lambda'
+            provider: 'gamedig'
         }
     },
     codwaw: {
@@ -155,7 +155,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
-            provider: 'gamedig-lambda'
+            provider: 'gamedig'
         }
     },
     et: {
@@ -165,7 +165,7 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: false,
         hint: (<small>ET: Legacy does not require a launcher. You only need to have the game installed, which you can get at <a href={'https://www.etlegacy.com/download'} target='_blank' className="text-white" rel="noreferrer">etlegacy.com/download</a></small>),
         serverNameConfig: {
-            provider: 'gamedig-lambda',
+            provider: 'gamedig',
             gameName: 'wolfensteinet'
         }
     },
@@ -177,7 +177,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
-            provider: 'gamedig-lambda',
+            provider: 'gamedig',
             gameName: 'fear'
         }
     },
@@ -189,7 +189,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
         serverNameConfig: {
-            provider: 'gamedig-lambda',
+            provider: 'gamedig',
             gameName: 'fear'
         }
     },
@@ -213,7 +213,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
         serverNameConfig: {
-            provider: 'gamedig-lambda',
+            provider: 'gamedig',
             gameName: 'swat4',
             queryPortOffset: 1
         }
@@ -226,7 +226,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
         serverNameConfig: {
-            provider: 'gamedig-lambda',
+            provider: 'gamedig',
             gameName: 'swat4',
             queryPortOffset: 1
         }
@@ -239,7 +239,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
-            provider: 'gamedig-lambda',
+            provider: 'gamedig',
             queryPortOffset: 1
         }
     },
@@ -251,7 +251,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
-            provider: 'gamedig-lambda',
+            provider: 'gamedig',
             queryPortOffset: 1
         }
     },
@@ -263,7 +263,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.12',
         serverNameConfig: {
-            provider: 'gamedig-lambda',
+            provider: 'gamedig',
             gameName: 'protocol-gamespy1', // GameSpy protocol is *way* faster than Unreal
             queryPortOffset: 10
         }
@@ -276,7 +276,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
-            provider: 'gamedig-lambda',
+            provider: 'gamedig',
             gameName: 'protocol-gamespy1', // GameSpy protocol is *way* faster than Unreal
             queryPortOffset: 10
         }
