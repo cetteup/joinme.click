@@ -15,7 +15,7 @@ export type GameConfig = {
     usesSteam?: boolean
     urlPrefix?: string
     serverNameConfig?: {
-        provider: 'bflist' | 'gametools' | 'gamedig-lambda' | 'gametracker-lambda'
+        provider: 'bflist' | 'gametools' | 'gamedig-lambda'
         gameName?: string
         queryPortOffset?: number
     }
@@ -165,8 +165,8 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: false,
         hint: (<small>ET: Legacy does not require a launcher. You only need to have the game installed, which you can get at <a href={'https://www.etlegacy.com/download'} target='_blank' className="text-white" rel="noreferrer">etlegacy.com/download</a></small>),
         serverNameConfig: {
-            provider: 'gametracker-lambda',
-            gameName: 'et'
+            provider: 'gamedig-lambda',
+            gameName: 'wolfensteinet'
         }
     },
     fear: {
@@ -177,7 +177,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
-            provider: 'gametracker-lambda',
+            provider: 'gamedig-lambda',
             gameName: 'fear'
         }
     },
@@ -189,7 +189,7 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
         serverNameConfig: {
-            provider: 'gametracker-lambda',
+            provider: 'gamedig-lambda',
             gameName: 'fear'
         }
     },
@@ -213,8 +213,9 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
         serverNameConfig: {
-            provider: 'gametracker-lambda',
-            gameName: 'swat4'
+            provider: 'gamedig-lambda',
+            gameName: 'swat4',
+            queryPortOffset: 1
         }
     },
     swat4x: {
@@ -225,8 +226,9 @@ export const supportedGames: Record<string, GameConfig> = {
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha',
         serverNameConfig: {
-            provider: 'gametracker-lambda',
-            gameName: 'swat4'
+            provider: 'gamedig-lambda',
+            gameName: 'swat4',
+            queryPortOffset: 1
         }
     },
     unreal: {

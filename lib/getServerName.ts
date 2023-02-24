@@ -28,9 +28,6 @@ export async function fetchServerName(gameConfig: GameConfig, host: string, port
             queryPortOffset ? (Number(port) + queryPortOffset).toString() : port
         );
     }
-    if (provider == 'gametracker-lambda' && port) {
-        return fetchServerNameGametrackerLambda(gameName || gameConfig.protocol, host, port);
-    }
     
     return fallback;
 }
@@ -72,37 +69,6 @@ async function fetchServerNameGamedigLambda(game: string, host: string, port: st
         // Remove colors from name
         // eslint-disable-next-line no-control-regex
         return name.replace(/\x1b...|[\x00-\x1a]/g, '');
-    }
-    else {
-        throw Error(resp.statusText);
-    }
-}
-
-type GametrackerLambdaResponse = {
-    results: {
-        game: string
-        name: string
-        host: string
-        port: number
-    }[]
-    hasMore: boolean
-}
-
-async function fetchServerNameGametrackerLambda(game: string, host: string, port: string): Promise<string> {
-    const params = new URLSearchParams({
-        type: game,
-        query: [host, port].join(':')
-    });
-    const resp = await fetch(`https://server-names.joinme.click/gametracker-lambda?${params}`);
-    if (resp.ok) {
-        const data: GametrackerLambdaResponse = await resp.json();
-        const entry = data.results.find((e) => e.host == host && e.port.toString() == port);
-        if (entry) {
-            return entry.name;
-        }
-        else {
-            throw Error('Server is not listed on GameTracker');
-        }
     }
     else {
         throw Error(resp.statusText);
