@@ -1,6 +1,5 @@
 import React from 'react';
 import { LauncherDetails, officialLauncher } from './launchers';
-import { Alert } from 'react-bootstrap';
 
 export type GameConfig = {
     protocol: string
@@ -85,8 +84,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'gameId',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.5-alpha',
-        alert: (<Alert key={'alert-bf4'} variant={'warning'}>Battlefield 4 requires Origin to launch, the EA app is currently not supported.</Alert>),
+        minLauncherVersion: 'v0.2.2',
         serverNameConfig: {
             provider: 'gametools'
         }
@@ -97,8 +95,7 @@ export const supportedGames: Record<string, GameConfig> = {
         urlType: 'gameId',
         requiresLauncher: true,
         launcher: officialLauncher,
-        minLauncherVersion: 'v0.1.5-alpha',
-        alert: (<Alert key={'alert-bf1'} variant={'warning'}>Battlefield 1 requires Origin to launch, the EA app is currently not supported.</Alert>),
+        minLauncherVersion: 'v0.2.2',
         serverNameConfig: {
             provider: 'gametools'
         }
