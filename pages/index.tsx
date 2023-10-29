@@ -32,7 +32,7 @@ const Index: FC = () => {
                 <Row>
                     <Col>
                         <Form.Group className='mb-3'>
-                            <Form.Select id='gameSelect' className='bg-dark text-white' size='lg' defaultValue='Select game' required onChange={e => setLink({ ...link, game: supportedGames[e.target.value], query: undefined, copied: false })}>
+                            <Form.Select id='gameSelect' className='text-white' size='lg' defaultValue='Select game' required onChange={e => setLink({ ...link, game: supportedGames[e.target.value], query: undefined, copied: false })}>
                                 <option disabled>Select game</option>
                                 {gameOptions}
                             </Form.Select>
@@ -42,7 +42,7 @@ const Index: FC = () => {
                         link.game?.mods?.length &&
                         <Col lg={5}>
                             <Form.Group className='mb-3'>
-                                <Form.Select id='modSelect' className='bg-dark text-white' size='lg' defaultValue='Select mod' onChange={e => setLink({ ...link, query: { ...link.query, mod: e.target.value }, copied: false })}>
+                                <Form.Select id='modSelect' className='text-white' size='lg' defaultValue='Select mod' onChange={e => setLink({ ...link, query: { ...link.query, mod: e.target.value }, copied: false })}>
                                     <option value={''}>Select mod (optional)</option>
                                     {getModOptions(link.game.mods.sort((a, b) => a.label.localeCompare(b.label)))}
                                 </Form.Select>
@@ -55,12 +55,12 @@ const Index: FC = () => {
                     <Row>
                         <Col md={7} className={'mb-3'}>
                             <Form.Group>
-                                <Form.Control className='bg-dark text-white' size='lg' type='text' placeholder='Enter server IP' onChange={e => setLink({ ...link, host: e.target.value, copied: false })}/>
+                                <Form.Control className='text-white' size='lg' type='text' placeholder='Enter server IP' onChange={e => setLink({ ...link, host: e.target.value, copied: false })}/>
                             </Form.Group>
                         </Col>
                         <Col md={5} className={'mb-3'}>
                             <Form.Group>
-                                <Form.Control className='bg-dark text-white' size='lg' type='text' placeholder='Enter server port' onChange={e => setLink({ ...link, port: e.target.value, copied: false })}/>
+                                <Form.Control className='text-white' size='lg' type='text' placeholder='Enter server port' onChange={e => setLink({ ...link, port: e.target.value, copied: false })}/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -70,14 +70,14 @@ const Index: FC = () => {
                     <Row>
                         <Col className={'mb-3'}>
                             <Form.Group>
-                                <Form.Control className='bg-dark text-white' size='lg' type='text' placeholder='Enter server game ID' onChange={e => setLink({ ...link, host: e.target.value, copied: false })}/>
+                                <Form.Control className='text-white' size='lg' type='text' placeholder='Enter server game ID' onChange={e => setLink({ ...link, host: e.target.value, copied: false })}/>
                             </Form.Group>
                         </Col>
                     </Row>
                 }
                 <Row>
                     <Col>
-                        <Form.Control className='bg-dark text-light' size='lg' type='text' placeholder='bf2://135.125.56.26:16469' value={buildGameUrl(link)} readOnly />
+                        <Form.Control className='text-light' size='lg' type='text' placeholder='bf2://135.125.56.26:16469' value={buildGameUrl(link)} readOnly />
                     </Col>
                 </Row>
             </Form>

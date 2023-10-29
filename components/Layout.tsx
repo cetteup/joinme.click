@@ -10,7 +10,7 @@ type LayoutProps = {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
     return (
-        <div className="App bg-secondary bg-gradient">
+        <div className="App bg-secondary bg-gradient" data-bs-theme="dark">
             <Head>
                 <meta charSet="utf-8"/>
                 <link rel="icon" href="/favicon.ico"/>
