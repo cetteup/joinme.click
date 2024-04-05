@@ -326,10 +326,10 @@
   resolved "https://registry.yarnpkg.com/@types/aria-query/-/aria-query-5.0.1.tgz#3286741fb8f1e1580ac28784add4c7a1d49bdfbc"
   integrity sha512-XTIieEY+gvJ39ChLcB4If5zHtPxt3Syj5rgZR+e1ctpmK8NjPf0zFqsz4JpLJT0xla9GFDKjy8Cpu331nrmE1Q==
 
-"@types/gamedig@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@types/gamedig/-/gamedig-5.0.0.tgz#c9ac35921f7d9a88c4ba0960aaf1584533333870"
-  integrity sha512-vcT1VRI1isQSKitwi/UuDLG3SxgVLtO0Sey/dKwiRWi8pp3bZHzayeKI7nQiNqqis0eGo4wRHhiWEusewWPrlw==
+"@types/gamedig@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/gamedig/-/gamedig-5.0.1.tgz#07903cacfd148b9d1d2d9b32d27a040870c03cb0"
+  integrity sha512-2MhqGsbQZCKG5WaK9CBf8k9C9GdWXw6zj34ny7qeJan5P7lBuaU5hTMO1A2KN/nWsskn+e7MeylEqB3wFPGewQ==
 
 "@types/http-cache-semantics@^4.0.1":
   version "4.0.1"
