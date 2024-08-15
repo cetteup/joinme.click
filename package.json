@@ -29,7 +29,7 @@
     "@types/react-dom": "18.2.25",
     "@typescript-eslint/eslint-plugin": "7.13.0",
     "@typescript-eslint/parser": "7.13.0",
-    "eslint": "9.5.0",
+    "eslint": "9.9.0",
     "eslint-plugin-react": "7.34.2",
     "typescript": "4.9.5"
   }
