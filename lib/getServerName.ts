@@ -29,6 +29,9 @@ export async function fetchServerName(gameConfig: GameConfig, host: string, port
             queryPortOffset ? (Number(port) + queryPortOffset).toString() : port
         );
     }
+    if (provider == 'gameserver-lister') {
+        return fetchServerNameGameserverLister(gameName || gameConfig.protocol, host);
+    }
     
     return fallback;
 }
@@ -53,6 +56,25 @@ async function fetchServerNameGametools(game: string, gameID: string): Promise<s
 
     if (resp.ok) {
         return (await resp.json()).prefix;
+    }
+    else {
+        throw Error(resp.statusText);
+    }
+}
+
+async function fetchServerNameGameserverLister(game: string, guid: string): Promise<string> {
+    const resp = await fetch(`https://lists.gameserverlister.com/${game}-servers-pc.json`)
+
+    if (resp.ok) {
+        const servers = await resp.json() as {
+            guid: string
+            name: string
+        }[];
+        const server = servers.find((s) => s.guid == guid);
+        if (!server) {
+            throw Error('Server not found in list');
+        }
+        return server.name;
     }
     else {
         throw Error(resp.statusText);

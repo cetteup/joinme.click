@@ -25,6 +25,8 @@ export function linkParamsValid({ game, host, port }: LinkParams): boolean {
     switch (game?.urlType) {
         case 'gameId':
             return isValidGameID(host);
+        case 'guid':
+            return isValidGUID(host);
         default:
             return isValidIP(host) && !!port && isValidPort(port);
     }
@@ -45,6 +47,10 @@ export function isValidGameID(gameID: string): boolean {
     return gameID.match(/^\d+$/gi) != null;
 }
 
+export function isValidGUID(guid: string): boolean {
+    return guid.match(/^[a-f0-9]+$/gi) != null
+}
+
 export function buildGameUrl({ game, host, port, query }: LinkParams): string {
     let url = '';
     const protocol = game?.usesSteam ? 'steam' : game?.protocol;
@@ -62,6 +68,9 @@ export function buildGameUrl({ game, host, port, query }: LinkParams): string {
     }
     if (host && game?.urlType == 'gameId') {
         url += isValidGameID(host) ? host : 'invalid game id';
+    }
+    if (host && game?.urlType == 'guid') {
+        url += isValidGUID(host) ? host : 'invalid server guid';
     }
 
     if (query) {

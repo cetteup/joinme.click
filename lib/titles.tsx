@@ -4,7 +4,7 @@ import { LauncherDetails, officialLauncher } from './launchers';
 export type GameConfig = {
     protocol: string
     label: string
-    urlType: 'ip-port' | 'gameId'
+    urlType: 'ip-port' | 'gameId' | 'guid'
     requiresLauncher: boolean
     launcher?: LauncherDetails
     minLauncherVersion?: string
@@ -14,7 +14,7 @@ export type GameConfig = {
     usesSteam?: boolean
     urlPrefix?: string
     serverNameConfig?: {
-        provider: 'bflist' | 'gametools' | 'gamedig'
+        provider: 'bflist' | 'gametools' | 'gameserver-lister' | 'gamedig'
         gameName?: string
         queryPortOffset?: number
     }
@@ -285,5 +285,16 @@ export const supportedGames: Record<string, GameConfig> = {
         requiresLauncher: true,
         launcher: officialLauncher,
         minLauncherVersion: 'v0.1.3-alpha'
-    }
+    },
+    vu: {
+        protocol: 'vu',
+        label: 'Venice Unleashed',
+        urlType: 'guid',
+        requiresLauncher: false,
+        hint: (<small>Venice Unleashed does not require a launcher. You only need to have the client installed, which you can get at <a href={'https://veniceunleashed.net/'} target='_blank' className="text-white" rel="noreferrer">veniceunleashed.net</a></small>),
+        urlPrefix: 'join/',
+        serverNameConfig: {
+            provider: 'gameserver-lister'
+        }
+    },
 };

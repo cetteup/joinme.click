@@ -75,6 +75,16 @@ const Index: FC = () => {
                         </Col>
                     </Row>
                 }
+                {
+                    (link.game && link.game.urlType == 'guid') &&
+                    <Row>
+                        <Col className={'mb-3'}>
+                            <Form.Group>
+                                <Form.Control className='text-white' size='lg' type='text' placeholder='Enter server GUID' onChange={e => setLink({ ...link, host: e.target.value, copied: false })}/>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                }
                 <Row>
                     <Col>
                         <Form.Control className='text-light' size='lg' type='text' placeholder='bf2://135.125.56.26:16469' value={buildGameUrl(link)} readOnly />
