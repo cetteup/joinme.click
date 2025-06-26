@@ -8,10 +8,10 @@
     "bootstrap-icons": "1.13.1",
     "gamedig": "4.3.2",
     "next": "13.3.0",
-    "react": "18.2.0",
+    "react": "18.3.1",
     "react-bootstrap": "2.10.10",
     "react-copy-to-clipboard": "5.1.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.3.1"
   },
   "scripts": {
     "dev": "next dev",
@@ -24,9 +24,9 @@
     "@testing-library/user-event": "14.6.1",
     "@types/jest": "29.5.14",
     "@types/node": "22.15.33",
-    "@types/react": "18.2.79",
+    "@types/react": "18.3.23",
     "@types/react-copy-to-clipboard": "5.0.7",
-    "@types/react-dom": "18.2.25",
+    "@types/react-dom": "18.3.7",
     "@typescript-eslint/eslint-plugin": "8.35.0",
     "@typescript-eslint/parser": "8.35.0",
     "eslint": "9.21.0",
