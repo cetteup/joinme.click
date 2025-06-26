@@ -54,7 +54,7 @@ const Footer: FC = () => {
 
 const Header: FC = () => {
     return (
-        <header className='mb-3'>
+        <header className='mb-4'>
             <Link href='/'><img src='/logo.svg' alt='joinme.click logo' className='logo'/></Link>
         </header>
     );

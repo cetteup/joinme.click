@@ -123,11 +123,12 @@ const JoinGame: FC<JoinGameProps> = ({ game, host, port, modSlug, serverName }: 
             <Head>
                 <title>{`Join ${serverName}, a ${getGameLabel(gameConfig, modSlug)} server`}</title>
             </Head>
-            <h1 className="display-6">You have been invited to join <span className={'text-primary'}>{serverName}</span>, a <em>{getGameLabel(gameConfig, modSlug)}</em> server</h1>
-            {
-                mod && !mod.isXpack &&
-                <small className={'text-white-50'}>{mod.label} is a {gameConfig.label} mod</small>
-            }
+            <p className="lead">
+                Hop into <strong>{getGameLabel(gameConfig, modSlug)}</strong> {}
+                {mod && !mod.isXpack && <span className={'text-white-50'}>({gameConfig.label} mod)</span>} {}
+                and join
+            </p>
+            <h1 className="display-6">{serverName}</h1>
             {
                 gameConfig.alert &&
                 <div className={'mt-3'}>{gameConfig.alert}</div>
