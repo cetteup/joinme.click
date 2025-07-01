@@ -59,7 +59,7 @@ const DownloadModal: FC<DownloadModalProps> = ({
             </Modal.Body>
             <Modal.Footer className="bg-secondary text-white">
                 <Button variant="secondary bg-light text-dark" onClick={props.onHide}>Close</Button>
-                <Button variant="primary" href={downloadURL}>Download</Button>
+                <Button variant="primary" href={downloadURL} data-umami-event={'download-launcher'}>Download</Button>
             </Modal.Footer>
         </Modal>
     );

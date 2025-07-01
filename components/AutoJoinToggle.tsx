@@ -33,6 +33,7 @@ const AutoJoinToggle: FC<AutoJoinToggleProps> = ({ linkParams }) => {
             type={'switch'}
             id={'auto-join-switch'}
             label={'Automatically join this server'}
+            data-umami-event={'toggle-auto-join'}
             onChange={(e) => {
                 const enabled = e.target.checked;
                 if (enabled && !isAutoJoinServer(server, autoJoinServers)) {

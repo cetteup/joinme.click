@@ -26,7 +26,7 @@ const Download: FC = () => {
                     As soon as the install is done, you are ready to join servers by just clicking a URL.
                 </p>
             </div>
-            <Button variant="primary" size='lg' href={officialLauncher.downloadURL}>Download installer</Button>
+            <Button variant="primary" size='lg' href={officialLauncher.downloadURL} data-umami-event={'download-launcher'}>Download installer</Button>
         </>
     );
 };

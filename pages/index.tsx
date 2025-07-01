@@ -94,7 +94,7 @@ const Index: FC = () => {
 
             <div>
                 <CopyToClipboard text={buildJoinMeLink(link)} onCopy={() => setLink({ ...link, copied: true })}>
-                    <Button ref={target} className='m-2' variant={linkParamsValid(link) ? 'primary' : 'outline-primary'} size="lg" disabled={!linkParamsValid(link)}>Copy joinme.click link</Button>
+                    <Button ref={target} className='m-2' variant={linkParamsValid(link) ? 'primary' : 'outline-primary'} size="lg" disabled={!linkParamsValid(link)} data-umami-event={'copy-link'}>Copy joinme.click link</Button>
                 </CopyToClipboard>
                 <Overlay target={target.current} show={link.copied} placement="left">
                     {(props) => (
