@@ -16,6 +16,7 @@ const JoinBtn: FC<JoinBtnProps & React.HTMLAttributes<HTMLButtonElement>> = ({ l
             href={!disabled ? joinUrl : undefined}
             disabled={disabled}
             data-umami-event={'join-server'}
+            data-umami-event-game={linkParams.game?.protocol}
             {...props}
         >
             Launch game and join
