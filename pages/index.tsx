@@ -1,7 +1,7 @@
 import React, { FC, useRef, useState } from 'react';
 import { Button, Col, Form, Overlay, Row, Tooltip } from 'react-bootstrap';
 import { GameMod, supportedGames } from '../lib/titles';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import CopyToClipboard from '../components/CopyToClipboard';
 import JoinBtn from '../components/JoinBtn';
 import DownloadModal from '../components/DownloadModal';
 import { buildGameUrl, buildJoinMeLink, LinkParams, linkParamsValid } from '../lib/util';

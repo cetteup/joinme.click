@@ -6,11 +6,11 @@
     "@types/gamedig": "5.0.3",
     "bootstrap": "5.3.8",
     "bootstrap-icons": "1.13.1",
+    "copy-to-clipboard": "3.3.3",
     "gamedig": "5.3.2",
     "next": "14.2.33",
     "react": "18.3.1",
     "react-bootstrap": "2.10.10",
-    "react-copy-to-clipboard": "5.1.0",
     "react-dom": "18.3.1"
   },
   "scripts": {
@@ -25,7 +25,6 @@
     "@types/jest": "30.0.0",
     "@types/node": "22.19.1",
     "@types/react": "18.3.27",
-    "@types/react-copy-to-clipboard": "5.0.7",
     "@types/react-dom": "18.3.7",
     "@typescript-eslint/eslint-plugin": "8.48.1",
     "@typescript-eslint/parser": "8.48.1",
