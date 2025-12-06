@@ -163,7 +163,7 @@ export const supportedGames: Record<string, GameConfig> = {
         hint: (<small>ET: Legacy does not require a launcher. You only need to have the game installed, which you can get at <a href={'https://www.etlegacy.com/download'} target='_blank' className="text-white" rel="noreferrer">etlegacy.com/download</a></small>),
         serverNameConfig: {
             provider: 'gamedig',
-            gameName: 'wolfensteinet'
+            gameName: 'wet'
         }
     },
     fear: {
@@ -249,6 +249,7 @@ export const supportedGames: Record<string, GameConfig> = {
         minLauncherVersion: 'v0.2.0',
         serverNameConfig: {
             provider: 'gamedig',
+            gameName: 'unrealtournament',
             queryPortOffset: 1
         }
     },

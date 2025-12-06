@@ -1,5 +1,5 @@
 import { GameConfig } from './titles';
-import Gamedig from 'gamedig';
+import { GameDig } from 'gamedig';
 
 export function buildFallbackServerName(gameConfig: GameConfig, host: string, port?: string): string {
     let serverName = host;
@@ -23,7 +23,7 @@ export async function fetchServerName(gameConfig: GameConfig, host: string, port
         return fetchServerNameGametools(gameName || gameConfig.protocol, host);
     }
     if (provider == 'gamedig' && port) {
-        return fetchServerNameGamedig(
+        return fetchServerNameGameDig(
             gameName || gameConfig.protocol,
             host,
             queryPortOffset ? (Number(port) + queryPortOffset).toString() : port
@@ -81,9 +81,9 @@ async function fetchServerNameGameserverLister(game: string, guid: string): Prom
     }
 }
 
-async function fetchServerNameGamedig(game: string, host: string, port: string): Promise<string> {
-    const { name } = await Gamedig.query({
-        type: game as Gamedig.Type,
+async function fetchServerNameGameDig(game: string, host: string, port: string): Promise<string> {
+    const { name } = await GameDig.query({
+        type: game,
         host: host,
         port: Number(port),
         givenPortOnly: true,
