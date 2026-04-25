@@ -6,7 +6,7 @@
     "@types/gamedig": "5.0.3",
     "bootstrap": "5.3.8",
     "bootstrap-icons": "1.13.1",
-    "copy-to-clipboard": "3.3.3",
+    "copy-to-clipboard": "4.0.2",
     "gamedig": "5.3.2",
     "next": "16.0.10",
     "react": "19.2.3",
